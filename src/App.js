@@ -14,7 +14,8 @@ import { Key, Chord } from "tonal";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    const keyData = Key.majorKey("G");
+    const keyData = Key.majorKey("C");
+
     this.state = {
       activeKey: {
         name: keyData.tonic + ' ' + keyData.type,
@@ -57,8 +58,13 @@ class App extends React.Component {
           />
         </nav>
         
-        <h1>{this.state.activeKey.name}</h1>
-        <Instrument activeKey={this.state.activeKey}/>
+        <header>
+          <h1>{this.state.activeKey.name}</h1>
+        </header>
+        
+        <section>
+          <Instrument activeKey={this.state.activeKey}/>
+        </section>
 
         <section>
           <NotationTable activeKey={this.state.activeKey}/>

@@ -81,14 +81,14 @@ class NotationTable extends React.Component {
   render() {
     const accidentals = this.props.activeKey.scale.filter(note => note.length > 1);
     const intervals = this.props.activeKey.type === 'major' ? majorIntervals : minorIntervals;
-    const intervalCells = intervals.map(interval => 
-      <td>{interval}</td>  
+    const intervalCells = intervals.map(intervalName => 
+      <td>{intervalName}</td>  
     )
-    const noteCells = this.props.activeKey.scale.map(note => 
-      <td>{note}</td>  
+    const noteCells = this.props.activeKey.scale.map(noteName => 
+      <td>{noteName}</td>  
     )
-    const chordCells = this.props.activeKey.chords.map(chord => 
-      <td>{chord}</td>  
+    const chordCells = this.props.activeKey.chords.map(chordName => 
+      <td>{chordName}</td>  
     )
     const chordNotes = this.props.activeKey.chords.map(chord => 
       Chord.get(chord).notes
