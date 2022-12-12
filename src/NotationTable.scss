@@ -1,7 +1,7 @@
 @import 'Defaults.scss';
 
 $noteHeight: 10px;
-$notes: a1 b1 c1 d1 e1 f1 g1 a2 b2 c2 d2 e2 f2 g2;
+// $notes: a1 b1 c1 d1 e1 f1 g1 a2 b2 c2 d2 e2 f2 g2;
 $notesOnLine: E1 G1 B2 D2 F2;
 $notesOnSmLine: C1 A3;
 $smallLineWidth: 30px;
@@ -33,16 +33,6 @@ $staffHeight: 110px;
     // background-position: center;
     // background-repeat: repeat-x;
 }
-
-    // .notation-staff__space {
-    //     display: block;
-    //     width: 100%; 
-    //     height: $noteHeight;
-
-    //     &.has--border {
-    //         border-top: 1px solid #000;
-    //     }
-    // }
 
     .notation-staff__space {
         display: block;
@@ -79,4 +69,21 @@ $staffHeight: 110px;
 
             }
         }
+    }
+
+    .notation-staff__acc { 
+        position: relative;
+ 
+        &.is--sharp {
+            top: -8px;
+        }
+        &.is--flat {
+            top: -14px;
+        }
+    }
+
+    .notation-staff__clef {
+        position: absolute;
+        top: 7px;
+        left: 8px;
     }
