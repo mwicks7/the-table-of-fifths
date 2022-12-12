@@ -39,7 +39,7 @@ function Instrument(props) {
       : notesWithSharps;
   }
   else if (props.activeKey.type === "minor") {
-    instNotes = props.activeKey.tonic[1] === "b" || [""].includes(props.activeKey.tonic)
+    instNotes = props.activeKey.tonic[1] === "b" || ["D", "G", "C", "F"].includes(props.activeKey.tonic)
       ? notesWithFlats 
       : notesWithSharps;
   }
