@@ -1,0 +1,82 @@
+@import 'Defaults.scss';
+
+$noteHeight: 10px;
+$notes: a1 b1 c1 d1 e1 f1 g1 a2 b2 c2 d2 e2 f2 g2;
+$notesOnLine: E1 G1 B2 D2 F2;
+$notesOnSmLine: C1 A3;
+$smallLineWidth: 30px;
+$staffHeight: 110px;
+
+.notation-table {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 auto;
+
+    th {
+        text-align: right;
+        color: #fff;
+    }
+
+    td {
+        padding: 10px 0;
+    }
+    
+}
+
+.notation-staff {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: $staffHeight;
+    // background-image: url("/images/staff.svg");
+    // background-position: center;
+    // background-repeat: repeat-x;
+}
+
+    // .notation-staff__space {
+    //     display: block;
+    //     width: 100%; 
+    //     height: $noteHeight;
+
+    //     &.has--border {
+    //         border-top: 1px solid #000;
+    //     }
+    // }
+
+    .notation-staff__space {
+        display: block;
+        position: relative;
+        font-size: $noteHeight;
+        line-height: $noteHeight;
+        height: $noteHeight;
+        width: 100%;
+        text-align: center;
+        margin-top: -$noteHeight/ 2;
+
+        @each $note in $notesOnLine {
+            &.for--#{$note}:after {
+                content: '';
+                display: block;
+                position: absolute;
+                border-top: 1px solid #000;
+                width: 100%;
+                top: 50%;
+            }
+        }
+
+        &.for--A3,
+        &.for--C1 {
+            .notation-staff__note::after {
+                content: '';
+                display: block;
+                position: absolute;
+                border-top: 1px solid #000;
+                width: $smallLineWidth;
+                top: 50%;
+                left: 50%;
+                margin-left: -$smallLineWidth / 2;
+
+            }
+        }
+    }
