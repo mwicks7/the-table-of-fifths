@@ -14,7 +14,9 @@ import { Key, Chord } from "tonal";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    const keyData = Key.majorKey("C");
+    const keyName = "C";
+    const keyData = Key.majorKey(keyName);
+    const chord = Chord.get(keyData.chords[0]);
 
     this.state = {
       activeKey: {
@@ -23,6 +25,9 @@ class App extends React.Component {
         type:  keyData.type,
         scale: keyData.scale,
         chords: keyData.chords,
+      },
+      activeChord: {
+        notes: chord.notes.slice(0, 3)
       }
     }
   }
@@ -33,16 +38,31 @@ class App extends React.Component {
     const newKeyData = newKeyType === "major" 
       ? Key.majorKey(newKeyTonic)
       : Key.minorKey(newKeyTonic).natural
-    
-    console.log(newKeyData);
 
+    const newKeyName = newKeyTonic + ' ' + newKeyType
+    
+    const newChord = Chord.get(newKeyData.chords[0])
+    
     this.setState({
       activeKey: {
-        name: newKeyData.tonic + ' ' + newKeyType,
+        name: newKeyName,
         tonic: newKeyData.tonic,
         type: newKeyType,
         scale: newKeyData.scale,
         chords: newKeyData.chords,
+      },
+      activeChord: {
+        notes: newChord.notes.slice(0, 3)
+      }
+    });
+  }
+
+  handleChordChange(e) {
+    const newChord = Chord.get(e.target.dataset.chord);
+    
+    this.setState({
+      activeChord: {
+        notes: newChord.notes.slice(0, 3)
       }
     });
   }
@@ -63,11 +83,18 @@ class App extends React.Component {
         </header>
         
         <section>
-          <Instrument activeKey={this.state.activeKey}/>
+          <Instrument 
+            activeKey={this.state.activeKey}
+            activeChord={this.state.activeChord}
+          />
         </section>
 
         <section>
-          <NotationTable activeKey={this.state.activeKey}/>
+          <NotationTable 
+            activeKey={this.state.activeKey} 
+            activeChord={this.state.activeChord}
+            onClick={e => this.handleChordChange(e)}
+          />
         </section>
 
       </div>

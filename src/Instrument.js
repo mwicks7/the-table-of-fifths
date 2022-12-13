@@ -1,10 +1,13 @@
+import { Key, Chord } from "tonal";
+
 const notesWithSharps = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" ];
 const notesWithFlats = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B" ];
 
 function PianoKey(props) { 
   let cssClass = "piano__key";
   if (props.note.length > 1) cssClass += " piano__key--accidental";
-  if (props.note === props.activeKey.tonic) cssClass += " piano__key--root";
+  if (props.note === props.activeChord.notes[0]) cssClass += " piano__key--root";
+  if (props.activeChord.notes.includes(props.note)) cssClass += " piano__key--chord"
   if (props.activeKey.scale.includes(props.note)) cssClass += " piano__key--scale"
   
   return (
@@ -17,6 +20,7 @@ function Piano(props) {
     return (
       <PianoKey 
         activeKey={props.activeKey}
+        activeChord={props.activeChord}
         key={note} 
         note={note}
       />
@@ -32,7 +36,6 @@ function Piano(props) {
 
 function Instrument(props) {
   let instNotes;
-
   if (props.activeKey.type === "major"){
     instNotes = props.activeKey.tonic[1] === "b" || ["F"].includes(props.activeKey.tonic)  
       ? notesWithFlats 
@@ -48,12 +51,15 @@ function Instrument(props) {
     <section className="instrument">
       <Piano 
         activeKey={props.activeKey}
+        activeChord={props.activeChord}
         instNotes={instNotes}/>
       <Piano 
         activeKey={props.activeKey}
+        activeChord={props.activeChord}
         instNotes={instNotes}/>
       <Piano 
         activeKey={props.activeKey}
+        activeChord={props.activeChord}
         instNotes={instNotes}/>
     </section>
   )

@@ -38,3 +38,13 @@
 Add a17y for b:flat #:sharp 5ths:Fifths
 
 JSX research and cleanup
+
+# TODO
+Add 8th interval
+Remove duplicates from staff
+- use low C as 
+
+
+# OPTIONS
+- Highlight scale
+- 

@@ -9,20 +9,51 @@ $staffHeight: 110px;
 
 .notation-table {
     width: 100%;
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     margin: 0 auto;
 
+    col {
+        &.is--chord {
+            background: $light-grey;
+        }
+
+        &.is--root {
+            background: $yellow;
+        }
+
+    }
     th {
-        text-align: right;
-        color: #fff;
+        color: $dark-grey;
+        font-weight: normal;
+        background: #FFF;
+        padding-bottom: 10px;
+        
+        &.is--hidden {
+            color: #fff;
+            font-size: 0;
+        }
+        
+        .is--chord & {
+            color: #000;
+        }
     }
 
     td {
         padding: 10px 0;
-    }
-    
+
+        &.is--spacer{
+            padding: 0;
+
+        }
+    }   
 }
+
+    .notation-table__chord-link {
+        display: block;
+        text-decoration: none;
+        color: black;
+    }
 
 .notation-staff {
     display: block;
@@ -55,8 +86,12 @@ $staffHeight: 110px;
             }
         }
 
+        &.for--A1,
         &.for--A3,
-        &.for--C1 {
+        &.for--C1,
+        &.for--C3,
+        &.for--E3,
+        &.for--G3 {
             .notation-staff__note::after {
                 content: '';
                 display: block;
@@ -80,10 +115,21 @@ $staffHeight: 110px;
         &.is--flat {
             top: -14px;
         }
+
+        &.is--0 {
+            left: 10px;
+        }
+
+        &.is--1 {
+            left: 20px;
+        }
+        &.is--3 {
+            left: 30px;
+        }
     }
 
     .notation-staff__clef {
         position: absolute;
-        top: 7px;
+        top: 32px;
         left: 8px;
     }
