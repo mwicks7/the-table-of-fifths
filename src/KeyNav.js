@@ -3,78 +3,89 @@ import React, { Fragment } from 'react';
 const majorKeys = [ "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#"];
 const minorKeys = [ "Bb", "F", "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "D#"];
 
-function KeyLinks(props) {
+function KeyLink(props) {
+  return (
+    <a 
+      className="key-nav__link"
+      href={"/#" + props.keyName} 
+      data-key-tonic={props.keyName} 
+      data-key-type={props.keyType} 
+      onClick={props.onClick} 
+    >
+      {props.keyName}
+    </a>
+  )
+}
+
+function KeyRow(props) {
+  const activeIndex = props.activeKey.type === "major"
+    ? majorKeys.indexOf(props.activeKey.tonic)
+    : minorKeys.indexOf(props.activeKey.tonic)
   const lastIndex = props.keys.length - 1;
-  const isSameType = props.currentKeyType === props.keyType;
-  const prevIndex = props.currentIndex === 0
+  const prevIndex = activeIndex === 0
     ? lastIndex
-    : props.currentIndex - 1
-
-  const nextIndex = props.currentIndex === lastIndex
+    : activeIndex - 1
+  const nextIndex = activeIndex === lastIndex
     ? 0
-    : props.currentIndex + 1 
+    : activeIndex + 1 
+  const isSameType = props.activeKey.type === props.keyType;
+ 
+  const columns = props.keys.map((keyName, i) => {   
+    const isCurrent = props.activeKey.name === keyName + ' ' + props.keyType
+    const isAlternate = !isSameType && i === activeIndex
+    const isPrev = isSameType && i === prevIndex
+    const isNext = isSameType && i === nextIndex
+    let className;
   
-  return props.keys.map((key, i) => {
-    const isCurrent = props.currentKeyName === key + ' ' + props.keyType;
-    const isPrev = isSameType && i === prevIndex;
-    const isNext = isSameType && i === nextIndex;
-    const isAlternate = !isSameType && i === props.currentIndex;
-
-    let linkClass = "";
-
     if (isCurrent) {
-      linkClass = "is--current";
+      className = "is--current";
     } else if (isPrev) {
-      linkClass = "is--prev";
+      className = "is--prev";
     } else if (isNext) {
-      linkClass = "is--next";
+      className = "is--next";
     } else if (isAlternate) {
-      linkClass = "is--alternate";
+      className = "is--alternate";
     }
 
     return (
-      <td>
-        <a href={"/#" + key} data-key-tonic={key} data-key-type={props.keyType} onClick={props.onClick} className={linkClass}>{key}</a>
+      <td className={className}>
+        <KeyLink
+          keyName={keyName}
+          keyType={props.keyType}
+          onClick={props.onClick}
+        />
       </td>
     )
   })
+
+  return (
+    <tr>
+      <th scope="row">{props.keyType+":"}</th>
+      {columns}
+    </tr>
+  )
 }
 
 class KeyNav extends React.Component {
   render() {
-    const activeKey = this.props.activeKey;
-    const currentIndex = activeKey.type === "major"
-      ? majorKeys.indexOf(activeKey.tonic)
-      : minorKeys.indexOf(activeKey.tonic);
-
+ 
     return (
       <table className="key-nav">
         <caption>The Table of 5ths</caption>
         <tbody>
-            <tr>
-              <th scope="row">Major:</th>
-              <KeyLinks
-                keys={majorKeys}
-                keyType="major"
-                currentIndex={currentIndex}
-                currentKeyTonic={activeKey.tonic}
-                currentKeyName={activeKey.name}
-                currentKeyType={activeKey.type}
-                onClick={this.props.onClick}
-              />
-            </tr>
-            <tr>
-              <th scope="row">Minor:</th>
-              <KeyLinks
-                keys={minorKeys}
-                keyType="minor"
-                currentIndex={currentIndex}
-                currentKeyTonic={activeKey.tonic}
-                currentKeyName={activeKey.name}
-                currentKeyType={activeKey.type}
-                onClick={this.props.onClick}
-              />
-            </tr>
+            <KeyRow 
+              keys={majorKeys}
+              keyType="major"
+              activeKey={this.props.activeKey}
+              onClick={this.props.onClick}
+            />
+
+            <KeyRow 
+              keys={minorKeys}
+              keyType="minor"
+              activeKey={this.props.activeKey}
+              onClick={this.props.onClick}
+            />
         </tbody>
       </table>
     )

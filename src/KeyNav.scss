@@ -13,9 +13,11 @@
 
     th {}
 
-    td {}
-    
-    a {
+    td {}    
+}
+
+
+    .key-nav__link {
         display: block;
         width: 100%;
         height: 80px;
@@ -27,7 +29,7 @@
         margin: 0 auto; 
         box-sizing: border-box;
 
-        &.is--current {
+        .is--current & {
             background: $light-yellow;
             min-width: 60px;
             font-size: $font-lrg;
@@ -35,17 +37,15 @@
             // border-left: 1px solid #000;
         }
 
-        &.is--next,
-        &.is--prev {
+        .is--next &,
+        .is--prev & {
             background: $light-grey;
         }
 
-        &.is--alternate {
+        .is--alternate & {
             background: $light-grey;
             // border: 2px solid $light-grey;
             border-top: 0;
             border-bottom: 0;
         }
     }
-    
-}
