@@ -1,13 +1,9 @@
 import logo from './logo.svg';
-import './Defaults.scss';
-import './NotationTable.scss';
-import './KeyNav.scss';
-import './Piano.scss';
-import './App.scss';
+import './styles.scss'
+
 import KeyNav from './KeyNav.js';
 import Instrument from './Instrument';
 import NotationTable from './NotationTable.js';
-
 import React, { Fragment } from 'react';
 import { Key, Chord } from "tonal";
 
@@ -38,9 +34,7 @@ class App extends React.Component {
     const newKeyData = newKeyType === "major" 
       ? Key.majorKey(newKeyTonic)
       : Key.minorKey(newKeyTonic).natural
-
     const newKeyName = newKeyTonic + ' ' + newKeyType
-    
     const newChord = Chord.get(newKeyData.chords[0])
     
     this.setState({
@@ -69,6 +63,8 @@ class App extends React.Component {
 
 
   render() {
+    const chords = this.state.activeKey.chords;
+
     return (
       <div className="page">        
         <nav>
@@ -78,25 +74,54 @@ class App extends React.Component {
           />
         </nav>
         
-        <header>
-          <h1>{this.state.activeKey.name}</h1>
-        </header>
-        
+
         <section>
+        
+          <header>
+            <h1>{this.state.activeKey.name}</h1>
+          </header>
           <Instrument 
             activeKey={this.state.activeKey}
             activeChord={this.state.activeChord}
           />
-        </section>
-
-        <section>
+        
           <NotationTable 
             activeKey={this.state.activeKey} 
             activeChord={this.state.activeChord}
             onClick={e => this.handleChordChange(e)}
           />
         </section>
+        
+        <section className="flex-col">
+          <div>
+            <h1>{chords[0]}</h1>
 
+          </div>
+          <div>
+            <h1>{chords[1]}</h1>
+          </div>
+        </section>
+        <section className="flex-col">
+          <div>
+            <h1>{chords[2]}</h1>
+          </div>
+          <div>
+            <h1>{chords[3]}</h1>
+          </div>
+        </section>
+        <section className="flex-col">
+          <div>
+            <h1>{chords[4]}</h1>
+          </div>
+        </section>
+        <section className="flex-col">
+          <div>
+            <h1>{chords[5]}</h1>
+          </div>
+          <div>
+            <h1>{chords[6]}</h1>
+          </div>
+        </section>
       </div>
     );
   }

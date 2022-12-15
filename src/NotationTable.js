@@ -4,6 +4,16 @@ import React, { Fragment } from 'react';
 const majorIntervals = ["I", "ii", "iii", "IV", "V", "vi", "vii°"];
 const minorIntervals = ["i", "ii°", "III", "iv", "v", "VI", "VII"];
 const staffPositions = ["G3", "F3", "E3", "D3", "C3", "B3", "A3", "G2", "F2", "E2", "D2", "C2", "B2", "A2", "G1", "F1", "E1", "D1", "C1", "B1", "A1"];
+const accSharpsOrder = ["F", "C", "G", "D", "A", "E"];
+const accFlatsOrder = ["B", "E", "A", "D", "G"];
+
+function sortAcc(a, b) {
+  if (a.charAt(1) == "#") {
+    return accSharpsOrder.indexOf(a.charAt(0)) - accSharpsOrder.indexOf(b.charAt(0));
+  } else {
+    return accFlatsOrder.indexOf(a.charAt(0)) - accFlatsOrder.indexOf(b.charAt(0));
+  }
+}
 
 function symbolToText(text) {
   if (text === "#") {
@@ -103,9 +113,10 @@ class NotationTable extends React.Component {
         let colClass = "";
         if (activeChord.includes(note)) colClass += " is--chord"
         if (activeChord.includes(note) && activeChord[0] === note) colClass += " is--root"
+        if (activeChord.includes(note) && activeChord[2] === note) colClass += " is--fifth"
         return <col className={colClass} data-chord={this.props.activeKey.chords[i]} onMouseOver={this.props.onClick}/>
     });
-    const accidentals = this.props.activeKey.scale.filter(note => note.length > 1);
+    const accidentals = this.props.activeKey.scale.filter(note => note.length > 1).sort(sortAcc);
     const intervals = this.props.activeKey.type === 'major' ? majorIntervals : minorIntervals;
     const intervalCells = intervals.map(intervalName => 
       <th>{intervalName}</th>  
@@ -125,7 +136,7 @@ class NotationTable extends React.Component {
       <table className="notation-table">
           
           <colgroup>
-            <col/>
+            <col class="has--clef"/>
             {colGroup}
             {colGroup}
             {colGroup[0]}

@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 const majorKeys = [ "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#"];
 const minorKeys = [ "Bb", "F", "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "D#"];
 
-function KeyNavLinks(props) {
-    const lastIndex = props.keys.length - 1;
+function KeyLinks(props) {
+  const lastIndex = props.keys.length - 1;
   const isSameType = props.currentKeyType === props.keyType;
   const prevIndex = props.currentIndex === 0
     ? lastIndex
@@ -46,14 +46,14 @@ class KeyNav extends React.Component {
     const currentIndex = activeKey.type === "major"
       ? majorKeys.indexOf(activeKey.tonic)
       : minorKeys.indexOf(activeKey.tonic);
-  
+
     return (
       <table className="key-nav">
-        <caption>Table of 5ths</caption>
+        <caption>The Table of 5ths</caption>
         <tbody>
             <tr>
               <th scope="row">Major:</th>
-              <KeyNavLinks
+              <KeyLinks
                 keys={majorKeys}
                 keyType="major"
                 currentIndex={currentIndex}
@@ -65,7 +65,7 @@ class KeyNav extends React.Component {
             </tr>
             <tr>
               <th scope="row">Minor:</th>
-              <KeyNavLinks
+              <KeyLinks
                 keys={minorKeys}
                 keyType="minor"
                 currentIndex={currentIndex}

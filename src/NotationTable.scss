@@ -1,5 +1,3 @@
-@import 'Defaults.scss';
-
 $noteHeight: 10px;
 // $notes: a1 b1 c1 d1 e1 f1 g1 a2 b2 c2 d2 e2 f2 g2;
 $notesOnLine: E1 G1 B2 D2 F2;
@@ -14,28 +12,31 @@ $staffHeight: 110px;
     margin: 0 auto;
 
     col {
-        &.is--chord {
-            background: $light-grey;
+        // &.is--chord,
+       
+        &.has--clef {
+            width: 100px;
         }
-
-        &.is--root {
-            background: $yellow;
-        }
-
     }
+
     th {
         color: $dark-grey;
         font-weight: normal;
-        background: #FFF;
-        padding-bottom: 10px;
+        padding: 20px 0 10px;
         
         &.is--hidden {
             color: #fff;
             font-size: 0;
         }
         
-        .is--chord & {
-            color: #000;
+
+        &.is--fifth {
+            background: $lightest-grey;
+        }
+
+        &.is--root {
+            background: $light-yellow;
+            border-radius: 4px;
         }
     }
 
@@ -60,9 +61,6 @@ $staffHeight: 110px;
     position: relative;
     width: 100%;
     height: $staffHeight;
-    // background-image: url("/images/staff.svg");
-    // background-position: center;
-    // background-repeat: repeat-x;
 }
 
     .notation-staff__space {
@@ -108,28 +106,30 @@ $staffHeight: 110px;
 
     .notation-staff__acc { 
         position: relative;
- 
+        text-align: left;
+        padding-left: 35px;
+        
+        img {
+            height: 25px;
+        }
+
         &.is--sharp {
-            top: -8px;
+            top: -7px;
         }
+
         &.is--flat {
-            top: -14px;
+            top: -13px;
         }
 
-        &.is--0 {
-            left: 10px;
-        }
-
-        &.is--1 {
-            left: 20px;
-        }
-        &.is--3 {
-            left: 30px;
+        @for $i from 0 through 6 {
+            &.is--#{$i} {
+                left: 10px * $i;
+            }
         }
     }
 
     .notation-staff__clef {
         position: absolute;
         top: 32px;
-        left: 8px;
+        left: 3px;
     }
