@@ -19,7 +19,7 @@ class App extends React.Component {
       activeKey: {
         name: keyData.tonic + ' ' + keyData.type,
         tonic: keyData.tonic,
-        type:  keyData.type,
+        type: keyData.type,
         scale: keyData.scale,
         chords: keyData.chords,
       },
@@ -32,12 +32,12 @@ class App extends React.Component {
   handleKeyChange(e) {
     const newKeyTonic = e.target.dataset.keyTonic;
     const newKeyType = e.target.dataset.keyType;
-    const newKeyData = newKeyType === "major" 
+    const newKeyData = newKeyType === "major"
       ? Key.majorKey(newKeyTonic)
       : Key.minorKey(newKeyTonic).natural
     const newKeyName = newKeyTonic + ' ' + newKeyType
     const newChord = Chord.get(newKeyData.chords[0])
-    
+
     this.setState({
       activeKey: {
         name: newKeyName,
@@ -54,7 +54,7 @@ class App extends React.Component {
 
   handleChordChange(e) {
     const newChord = Chord.get(e.target.dataset.chord);
-    
+
     this.setState({
       activeChord: {
         notes: newChord.notes.slice(0, 3)
@@ -65,9 +65,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="page">        
+      <div className="page">
         <FifthsTable onClick={e => this.handleKeyChange(e)} activeKey={this.state.activeKey} />
-        <Scale activeKey={this.state.activeKey}/>
+        <Scale activeKey={this.state.activeKey} />
         {/* <Chords activeKey={this.state.activeKey} chords={this.state.activeKey.chords}/> */}
       </div>
     );

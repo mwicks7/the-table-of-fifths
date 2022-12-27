@@ -8,18 +8,18 @@ function Scale(props) {
         <h1>{props.activeKey.name}</h1>
       </header>
 
-      <Instrument 
+      <Instrument
         notes={props.activeKey.scale}
         keyType={props.activeKey.type}
         keyTonic={props.activeKey.tonic}
-        copies={[1,2,3]}
+        copies={[1, 2, 3]}
       />
 
-      <Notation 
+      <Notation
         notes={props.activeKey.scale}
         keyType={props.activeKey.type}
         showIntervals={true}
-        octaves={[1, 2]} 
+        octaves={[1, 2]}
       />
     </section>
   )

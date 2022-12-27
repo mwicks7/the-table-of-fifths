@@ -47,7 +47,7 @@ function ClefSymbol() {
 
 function SignatureSymbol(props) {
   return (
-    <div className={"staff__sig is--"+props.sigIndex+" is--"+props.sigType} >
+    <div className={"staff__sig is--" + props.sigIndex + " is--" + props.sigType} >
       <img src={"images/acc_" + props.sigType + ".svg"} />
     </div>
   )
@@ -68,26 +68,26 @@ function StaffPosition(props) {
   const showNotes = props.notePositions.length > 0 && props.notePositions.includes(props.staffPos)
 
   if (showSignature) {
-    signatureSymbol = ( 
-      <SignatureSymbol 
-        key={"staffSignature"+props.staffPos}
-        sigIndex={props.sigPositions.indexOf(props.staffPos)} 
+    signatureSymbol = (
+      <SignatureSymbol
+        key={"staffSignature" + props.staffPos}
+        sigIndex={props.sigPositions.indexOf(props.staffPos)}
         sigType={props.sigType}
       />
     )
   }
 
-  if (showNotes){
+  if (showNotes) {
     noteSymbol = (
-      <NoteSymbol 
-        key={"staffNote"+props.staffPos}   
+      <NoteSymbol
+        key={"staffNote" + props.staffPos}
       />
     )
   }
 
   return (
-    <div className={"staff__space for--"+props.staffPos}>
-      {signatureSymbol}      
+    <div className={"staff__space for--" + props.staffPos}>
+      {signatureSymbol}
       {noteSymbol}
     </div>
   )
@@ -95,12 +95,12 @@ function StaffPosition(props) {
 
 function Staff(props) {
   const clef = props.showClef ?
-    <ClefSymbol/> :
+    <ClefSymbol /> :
     ''
   const sigType = getSignatureType(props.signature)
   const sigPositions = props.signature.sort(sortSignature).map((sig) => convertSigToPos(sig))
   const notePositions = props.notes.map((note) => convertNoteToPos(note, props.octave))
-  
+
   const staff = staffPositions.map(staffPos => {
     return (
       <StaffPosition
@@ -108,7 +108,7 @@ function Staff(props) {
         sigType={sigType}
         sigPositions={sigPositions}
         notePositions={notePositions}
-        key={"staffPosition"+staffPos}
+        key={"staffPosition" + staffPos}
       />
     )
   })
