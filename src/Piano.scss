@@ -5,7 +5,7 @@
     .piano__key {
         position: relative;
         display: inline-block;
-        width: 35px;
+        width: 34px;
         height: 175px;
         border: 1px solid #000;
         background-color: #fff;
@@ -15,7 +15,7 @@
         border-top: 5px solid #000;
     }
     
-    .piano__key--accidental {
+    .piano__key--black {
         display: inline-block;
         background-color: #000;
         width: 26px;

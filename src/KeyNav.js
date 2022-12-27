@@ -7,13 +7,21 @@ function KeyLink(props) {
   return (
     <a 
       className="key-nav__link"
-      href={"/#" + props.keyName} 
-      data-key-tonic={props.keyName} 
+      href={"/#" + props.keyTonic} 
+      data-key-tonic={props.keyTonic} 
       data-key-type={props.keyType} 
       onClick={props.onClick} 
     >
-      {props.keyName}
+      {props.keyTonic}
     </a>
+  )
+}
+
+function KeyCol(props) {
+  return (
+    <td className={props.class}>
+      {props.children}
+    </td>
   )
 }
 
@@ -30,8 +38,8 @@ function KeyRow(props) {
     : activeIndex + 1 
   const isSameType = props.activeKey.type === props.keyType;
  
-  const columns = props.keys.map((keyName, i) => {   
-    const isCurrent = props.activeKey.name === keyName + ' ' + props.keyType
+  const columns = props.keys.map((keyTonic, i) => {   
+    const isCurrent = isSameType && props.activeKey.tonic === keyTonic
     const isAlternate = !isSameType && i === activeIndex
     const isPrev = isSameType && i === prevIndex
     const isNext = isSameType && i === nextIndex
@@ -48,13 +56,14 @@ function KeyRow(props) {
     }
 
     return (
-      <td className={className}>
+      <KeyCol key={keyTonic} class={className}>
         <KeyLink
-          keyName={keyName}
+          key={keyTonic}
+          keyTonic={keyTonic}
           keyType={props.keyType}
           onClick={props.onClick}
         />
-      </td>
+      </KeyCol>
     )
   })
 

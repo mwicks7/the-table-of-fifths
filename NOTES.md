@@ -48,3 +48,12 @@ Remove duplicates from staff
 # OPTIONS
 - Highlight scale
 - 
+
+
+Instrument Switcher
+https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
+
+Aria
+role=navigation
+aria-live
+aria-atomic="true" ??

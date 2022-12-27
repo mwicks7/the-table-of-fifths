@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './styles.scss'
 
-import KeyNav from './KeyNav.js';
-import Instrument from './Instrument';
-import NotationTable from './NotationTable.js';
 import React, { Fragment } from 'react';
 import { Key, Chord } from "tonal";
+
+import KeyNav from './KeyNav.js';
+import Scale from './Scale.js';
+import Chords from './Chords.js';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -63,65 +65,11 @@ class App extends React.Component {
 
 
   render() {
-    const chords = this.state.activeKey.chords;
-
     return (
       <div className="page">        
-        <nav>
-          <KeyNav 
-            onClick={e => this.handleKeyChange(e)}
-            activeKey={this.state.activeKey}
-          />
-        </nav>
-        
-
-        <section>
-        
-          <header>
-            <h1>{this.state.activeKey.name}</h1>
-          </header>
-          <Instrument 
-            activeKey={this.state.activeKey}
-            activeChord={this.state.activeChord}
-          />
-        
-          <NotationTable 
-            activeKey={this.state.activeKey} 
-            activeChord={this.state.activeChord}
-            onClick={e => this.handleChordChange(e)}
-          />
-        </section>
-        
-        <section className="flex-col">
-          <div>
-            <h1>{chords[0]}</h1>
-
-          </div>
-          <div>
-            <h1>{chords[1]}</h1>
-          </div>
-        </section>
-        <section className="flex-col">
-          <div>
-            <h1>{chords[2]}</h1>
-          </div>
-          <div>
-            <h1>{chords[3]}</h1>
-          </div>
-        </section>
-        <section className="flex-col">
-          <div>
-            <h1>{chords[4]}</h1>
-          </div>
-        </section>
-        <section className="flex-col">
-          <div>
-            <h1>{chords[5]}</h1>
-          </div>
-          <div>
-            <h1>{chords[6]}</h1>
-          </div>
-        </section>
+        <KeyNav onClick={e => this.handleKeyChange(e)} activeKey={this.state.activeKey} />
+        <Scale activeKey={this.state.activeKey}/>
+        {/* <Chords activeKey={this.state.activeKey} chords={this.state.activeKey.chords}/> */}
       </div>
     );
   }

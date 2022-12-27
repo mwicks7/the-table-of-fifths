@@ -1,69 +1,12 @@
-$noteHeight: 10px;
-// $notes: a1 b1 c1 d1 e1 f1 g1 a2 b2 c2 d2 e2 f2 g2;
-$notesOnLine: E1 G1 B2 D2 F2;
-$notesOnSmLine: C1 A3;
-$smallLineWidth: 30px;
-$staffHeight: 110px;
 
-.notation-table {
-    width: 100%;
-    font-size: 20px;
-    text-align: center;
-    margin: 0 auto;
-
-    col {
-        // &.is--chord,
-       
-        &.has--clef {
-            width: 100px;
-        }
-    }
-
-    th {
-        color: $dark-grey;
-        font-weight: normal;
-        padding: 20px 0 10px;
-        
-        &.is--hidden {
-            color: #fff;
-            font-size: 0;
-        }
-        
-
-        &.is--fifth {
-            background: $lightest-grey;
-        }
-
-        &.is--root {
-            background: $light-yellow;
-            border-radius: 4px;
-        }
-    }
-
-    td {
-        padding: 10px 0;
-
-        &.is--spacer{
-            padding: 0;
-
-        }
-    }   
-}
-
-    .notation-table__chord-link {
-        display: block;
-        text-decoration: none;
-        color: black;
-    }
-
-.notation-staff {
+.staff {
     display: block;
     position: relative;
     width: 100%;
     height: $staffHeight;
 }
 
-    .notation-staff__space {
+    .staff__space {
         display: block;
         position: relative;
         font-size: $noteHeight;
@@ -90,7 +33,7 @@ $staffHeight: 110px;
         &.for--C3,
         &.for--E3,
         &.for--G3 {
-            .notation-staff__note::after {
+            .staff__note::after {
                 content: '';
                 display: block;
                 position: absolute;
@@ -104,7 +47,7 @@ $staffHeight: 110px;
         }
     }
 
-    .notation-staff__acc { 
+    .staff__sig { 
         position: relative;
         text-align: left;
         padding-left: 35px;
@@ -128,7 +71,7 @@ $staffHeight: 110px;
         }
     }
 
-    .notation-staff__clef {
+    .staff__clef {
         position: absolute;
         top: 32px;
         left: 3px;
