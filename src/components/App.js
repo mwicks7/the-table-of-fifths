@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './styles.scss'
+import '../styles/styles.scss'
 
 import React, { Fragment } from 'react';
 import { Key, Chord } from "tonal";
