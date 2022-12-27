@@ -72,4 +72,4 @@ class Notation extends React.Component {
   }
 }
 
-export default NotationTable;
+export default Notation;
