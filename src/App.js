@@ -4,7 +4,7 @@ import './styles.scss'
 import React, { Fragment } from 'react';
 import { Key, Chord } from "tonal";
 
-import KeyNav from './KeyNav.js';
+import FifthsTable from './FifthsTable.js';
 import Scale from './Scale.js';
 import Chords from './Chords.js';
 
@@ -67,7 +67,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="page">        
-        <KeyNav onClick={e => this.handleKeyChange(e)} activeKey={this.state.activeKey} />
+        <FifthsTable onClick={e => this.handleKeyChange(e)} activeKey={this.state.activeKey} />
         <Scale activeKey={this.state.activeKey}/>
         {/* <Chords activeKey={this.state.activeKey} chords={this.state.activeKey.chords}/> */}
       </div>

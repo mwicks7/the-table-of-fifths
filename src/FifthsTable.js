@@ -3,10 +3,10 @@ import React, { Fragment } from 'react';
 const majorKeys = [ "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#"];
 const minorKeys = [ "Bb", "F", "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "D#"];
 
-function KeyLink(props) {
+const FifthsLink = (props) => {
   return (
     <a 
-      className="key-nav__link"
+      className="fifths-table__link"
       href={"/#" + props.keyTonic} 
       data-key-tonic={props.keyTonic} 
       data-key-type={props.keyType} 
@@ -17,7 +17,7 @@ function KeyLink(props) {
   )
 }
 
-function KeyCol(props) {
+const FifthsCol = (props) => {
   return (
     <td className={props.class}>
       {props.children}
@@ -25,7 +25,7 @@ function KeyCol(props) {
   )
 }
 
-function KeyRow(props) {
+const FifthsRow = (props) => {
   const activeIndex = props.activeKey.type === "major"
     ? majorKeys.indexOf(props.activeKey.tonic)
     : minorKeys.indexOf(props.activeKey.tonic)
@@ -56,14 +56,14 @@ function KeyRow(props) {
     }
 
     return (
-      <KeyCol key={keyTonic} class={className}>
-        <KeyLink
+      <FifthsCol key={keyTonic} class={className}>
+        <FifthsLink
           key={keyTonic}
           keyTonic={keyTonic}
           keyType={props.keyType}
           onClick={props.onClick}
         />
-      </KeyCol>
+      </FifthsCol>
     )
   })
 
@@ -75,30 +75,27 @@ function KeyRow(props) {
   )
 }
 
-class KeyNav extends React.Component {
-  render() {
- 
-    return (
-      <table className="key-nav">
-        <caption>The Table of 5ths</caption>
-        <tbody>
-            <KeyRow 
-              keys={majorKeys}
-              keyType="major"
-              activeKey={this.props.activeKey}
-              onClick={this.props.onClick}
-            />
+const FifthsTable = (props) => {
+  return (
+    <table className="fifths-table">
+      <caption>The Table of 5ths</caption>
+      <tbody>
+          <FifthsRow 
+            keys={majorKeys}
+            keyType="major"
+            activeKey={props.activeKey}
+            onClick={props.onClick}
+          />
 
-            <KeyRow 
-              keys={minorKeys}
-              keyType="minor"
-              activeKey={this.props.activeKey}
-              onClick={this.props.onClick}
-            />
-        </tbody>
-      </table>
-    )
-  }
+          <FifthsRow 
+            keys={minorKeys}
+            keyType="minor"
+            activeKey={props.activeKey}
+            onClick={props.onClick}
+          />
+      </tbody>
+    </table>
+  )
 }
 
-export default KeyNav;
+export default FifthsTable;
