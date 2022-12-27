@@ -1,5 +1,4 @@
 $noteHeight: 10px;
-// $notes: a1 b1 c1 d1 e1 f1 g1 a2 b2 c2 d2 e2 f2 g2;
 $notesOnLine: E1 G1 B2 D2 F2;
 $notesOnSmLine: C1 A3;
 $smallLineWidth: 30px;
@@ -22,22 +21,10 @@ $staffHeight: 110px;
         flex: 1;
     }
 
-        .notation__note {
-            // &.is--chord {
-            //     background: $lightest-grey;
-            // }
-            
-            // &.has--clef {
-            //     width: 100px;
-            // }
-            // &.is--root {
-            //     // background: $light-yellow;
-            //     border-radius: 4px;
-            // }        
-        }
+        .notation__note {}
 
             .notation__interval {
-                color: $dark-grey;
+                color: $grey-dark;
                 padding: 20px 0 10px;
             }
 
