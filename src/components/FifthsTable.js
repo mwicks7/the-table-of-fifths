@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react'
 
-const majorKeys = ["Db", "Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#"];
-const minorKeys = ["Bb", "F", "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "D#"];
+const majorKeys = ['Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#']
+const minorKeys = ['Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#']
 
 const FifthsLink = (props) => {
   return (
     <a
       className="fifths-table__link"
-      href={"/#" + props.keyTonic}
+      href={'/#' + props.keyTonic}
       data-key-tonic={props.keyTonic}
       data-key-type={props.keyType}
       onClick={props.onClick}
@@ -18,15 +18,15 @@ const FifthsLink = (props) => {
 }
 
 const FifthsCol = (props) => {
-  let cssClass;
+  let cssClass
   if (props.isCurrent) {
-    cssClass = "is--current";
+    cssClass = 'is--current'
   } else if (props.isPrev) {
-    cssClass = "is--prev";
+    cssClass = 'is--prev'
   } else if (props.isNext) {
-    cssClass = "is--next";
+    cssClass = 'is--next'
   } else if (props.isAlternate) {
-    cssClass = "is--alternate";
+    cssClass = 'is--alternate'
   }
 
   return (
@@ -37,22 +37,22 @@ const FifthsCol = (props) => {
 }
 
 const FifthsRow = (props) => {
-  const activeIndex = props.activeKey.type === "major"
+  const activeIndex = props.activeKey.type === 'major'
     ? majorKeys.indexOf(props.activeKey.tonic)
     : minorKeys.indexOf(props.activeKey.tonic)
-  const lastIndex = props.keys.length - 1;
+  const lastIndex = props.keys.length - 1
   const prevIndex = activeIndex === 0
     ? lastIndex
     : activeIndex - 1
   const nextIndex = activeIndex === lastIndex
     ? 0
     : activeIndex + 1
-  const isSameType = props.activeKey.type === props.keyType;
+  const isSameType = props.activeKey.type === props.keyType
 
   const columns = props.keys.map((keyTonic, i) => {
     return (
       <FifthsCol
-        key={keyTonic}
+        key={props.keyType + keyTonic}
         isCurrent={isSameType && props.activeKey.tonic === keyTonic}
         isAlternate={!isSameType && i === activeIndex}
         isPrev={isSameType && i === prevIndex}
@@ -69,7 +69,7 @@ const FifthsRow = (props) => {
 
   return (
     <tr>
-      <th scope="row">{props.keyType + ":"}</th>
+      <th scope="row">{props.keyType + ':'}</th>
       {columns}
     </tr>
   )
@@ -98,4 +98,4 @@ const FifthsTable = (props) => {
   )
 }
 
-export default FifthsTable;
+export default FifthsTable

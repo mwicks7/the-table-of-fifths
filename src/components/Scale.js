@@ -1,7 +1,8 @@
-import Instrument from './Instrument';
-import Notation from './Notation.js';
+import React from 'react'
+import Instrument from './Instrument'
+import Notation from './Notation.js'
 
-function Scale(props) {
+function Scale (props) {
   return (
     <section>
       <header>
@@ -25,4 +26,4 @@ function Scale(props) {
   )
 }
 
-export default Scale;
+export default Scale

@@ -1,19 +1,18 @@
 import '../styles/styles.scss'
 
-import React, { Fragment } from 'react';
-import { Key, Chord } from "tonal";
+import React from 'react'
+import { Key, Chord } from 'tonal'
 
-import FifthsTable from './FifthsTable.js';
-import Scale from './Scale.js';
-import Chords from './Chords.js';
-
+import FifthsTable from './FifthsTable.js'
+import Scale from './Scale.js'
+// import Chords from './Chords.js';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    const keyName = "C";
-    const keyData = Key.majorKey(keyName);
-    const chord = Chord.get(keyData.chords[0]);
+  constructor (props) {
+    super(props)
+    const keyName = 'C'
+    const keyData = Key.majorKey(keyName)
+    const chord = Chord.get(keyData.chords[0])
 
     this.state = {
       activeKey: {
@@ -21,7 +20,7 @@ class App extends React.Component {
         tonic: keyData.tonic,
         type: keyData.type,
         scale: keyData.scale,
-        chords: keyData.chords,
+        chords: keyData.chords
       },
       activeChord: {
         notes: chord.notes.slice(0, 3)
@@ -29,10 +28,10 @@ class App extends React.Component {
     }
   }
 
-  handleKeyChange(e) {
-    const newKeyTonic = e.target.dataset.keyTonic;
-    const newKeyType = e.target.dataset.keyType;
-    const newKeyData = newKeyType === "major"
+  handleKeyChange (e) {
+    const newKeyTonic = e.target.dataset.keyTonic
+    const newKeyType = e.target.dataset.keyType
+    const newKeyData = newKeyType === 'major'
       ? Key.majorKey(newKeyTonic)
       : Key.minorKey(newKeyTonic).natural
     const newKeyName = newKeyTonic + ' ' + newKeyType
@@ -44,34 +43,33 @@ class App extends React.Component {
         tonic: newKeyData.tonic,
         type: newKeyType,
         scale: newKeyData.scale,
-        chords: newKeyData.chords,
+        chords: newKeyData.chords
       },
       activeChord: {
         notes: newChord.notes.slice(0, 3)
       }
-    });
+    })
   }
 
-  handleChordChange(e) {
-    const newChord = Chord.get(e.target.dataset.chord);
+  handleChordChange (e) {
+    const newChord = Chord.get(e.target.dataset.chord)
 
     this.setState({
       activeChord: {
         notes: newChord.notes.slice(0, 3)
       }
-    });
+    })
   }
 
-
-  render() {
+  render () {
     return (
       <div className="page">
         <FifthsTable onClick={e => this.handleKeyChange(e)} activeKey={this.state.activeKey} />
         <Scale activeKey={this.state.activeKey} />
         {/* <Chords activeKey={this.state.activeKey} chords={this.state.activeKey.chords}/> */}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

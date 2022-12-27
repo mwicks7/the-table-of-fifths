@@ -1,11 +1,10 @@
-import { Key, Chord } from "tonal";
-import React, { Fragment } from 'react';
-import Staff from './Staff.js';
+import React, { Fragment } from 'react'
+import Staff from './Staff.js'
 
-const majorIntervals = ["I", "ii", "iii", "IV", "V", "vi", "vii°"];
-const minorIntervals = ["i", "ii°", "III", "iv", "v", "VI", "VII"];
+const majorIntervals = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°']
+const minorIntervals = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII']
 
-function Signature(props) {
+function Signature (props) {
   return (
     <div className="notation__signature">
       <Staff
@@ -17,18 +16,18 @@ function Signature(props) {
   )
 }
 
-function Notes(props) {
-  const intervals = props.keyType === "major"
+function Notes (props) {
+  const intervals = props.keyType === 'major'
     ? majorIntervals
     : minorIntervals
-  let octave = props.octave;
+  let octave = props.octave
 
   const noteGroups = props.notes.map((note, i) => {
-    const notes = Array.isArray(note) ? note : [note];
-    if (note.charAt(0) === "A") octave += 1;
+    const notes = Array.isArray(note) ? note : [note]
+    if (note.charAt(0) === 'A') octave += 1
 
     return (
-      <div className="notation__note">
+      <div key={'staff' + note} className="notation__note">
         <div className="notation__interval">{props.showIntervals && intervals[i]}</div>
         <div className="Notation__name">{note}</div>
         <Staff
@@ -36,7 +35,7 @@ function Notes(props) {
           signature={[]}
           showClef={false}
           octave={octave}
-          key={"notationNotes" + note}
+          key={'notationNotes' + note}
         />
       </div>
     )
@@ -50,18 +49,19 @@ function Notes(props) {
 }
 
 class Notation extends React.Component {
-  render() {
+  render () {
     const signature = this.props.notes.filter(note => note.length > 1)
     const notes = this.props.octaves.map(octave => {
       return (
         <Notes
+          key={'notes' + octave}
           notes={this.props.notes}
           keyType={this.props.keyType}
           octave={octave}
           showIntervals={this.props.showIntervals && octave === 1}
         />
       )
-    });
+    })
 
     return (
       <div className="notation">
@@ -72,4 +72,4 @@ class Notation extends React.Component {
   }
 }
 
-export default Notation;
+export default Notation

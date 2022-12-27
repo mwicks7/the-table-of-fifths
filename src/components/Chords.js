@@ -1,11 +1,12 @@
-import { Key, Chord } from "tonal";
+import React from 'react'
+import { Chord } from 'tonal'
 
-import Instrument from './Instrument';
-import NotationTable from './Notation.js';
+import Instrument from './Instrument'
+import NotationTable from './Notation.js'
 
-function ChordSection(props) {
-  const notes = Chord.get(props.chord).notes;
-  const notesDup = Chord.get(props.chord).notes;
+function ChordSection (props) {
+  const notes = Chord.get(props.chord).notes
+  // const notesDup = Chord.get(props.chord).notes
 
   return (
     <section className="chord">
@@ -29,16 +30,20 @@ function ChordSection(props) {
   )
 }
 
-function Chords(props) {
+function Chords (props) {
   const chords = props.chords.map(chord =>
-    <ChordSection chord={chord} activeKey={props.activeKey} />
+    <ChordSection
+      chord={chord}
+      activeKey={props.activeKey}
+      key={'chord' + chord}
+    />
   )
 
   return (
-    <section class="chords">
+    <section className="chords">
       {chords}
     </section>
   )
 }
 
-export default Chords;
+export default Chords
