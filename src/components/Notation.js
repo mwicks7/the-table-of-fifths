@@ -48,28 +48,26 @@ function Notes (props) {
   )
 }
 
-class Notation extends React.Component {
-  render () {
-    const signature = this.props.notes.filter(note => note.length > 1)
-    const notes = this.props.octaves.map(octave => {
-      return (
-        <Notes
-          key={'notes' + octave}
-          notes={this.props.notes}
-          keyType={this.props.keyType}
-          octave={octave}
-          showIntervals={this.props.showIntervals && octave === 1}
-        />
-      )
-    })
-
+function Notation (props) {
+  const signature = props.notes.filter(note => note.length > 1)
+  const notes = props.octaves.map(octave => {
     return (
-      <div className="notation">
-        <Signature signature={signature} />
-        {notes}
-      </div>
+      <Notes
+        key={'notes' + octave}
+        notes={props.notes}
+        keyType={props.keyType}
+        octave={octave}
+        showIntervals={props.showIntervals && octave === 1}
+      />
     )
-  }
+  })
+
+  return (
+    <div className="notation">
+      <Signature signature={signature} />
+      {notes}
+    </div>
+  )
 }
 
 export default Notation
