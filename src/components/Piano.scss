@@ -1,68 +1,69 @@
 .piano {
-    display:block;
+  display: block;
 }
-    
-    .piano__key {
-        position: relative;
-        display: inline-block;
-        width: 34px;
-        height: 175px;
-        border: 1px solid #000;
-        background-color: #fff;
-        vertical-align: top;
-        margin-right: -1px;
-        border-radius: 0 0 5px 5px;
-        border-top: 5px solid #000;
-    }
-    
-    .piano__key--black {
-        display: inline-block;
-        background-color: #000;
-        width: 26px;
-        height: 110px;
-        margin-left: -13px;
-        margin-right: -13px;
-        z-index: 1;
-        position: relative;
-    }
-    
-    .piano__key--scale,
-    .piano__key--root,
-    .piano__key--chord {
-        position: relative;
-        &:after {
-            content: '';
-            box-sizing: border-box;
-            position: absolute;
-            left: 3px;
-            // height: 10px;
-            height: 40px;
-            right: 3px;
-            bottom: 3px;
-            border-radius: 3px 3px 5px 5px;
-        }
-    }
-    
-    .piano__key--scale {
-        &:after {
-            // border: 2px solid $grey;
-            background: $grey;
-        }
-    }
-    
 
-    .piano__key--chord {
-        &:after {
-            border: 0;
-            height: 40px;
-            background-color: $grey;
-        }
+  .piano__key {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 175px;
+    border: 1px solid #000;
+    background-color: #fff;
+    vertical-align: top;
+    margin-right: -1px;
+    border-radius: 0 0 5px 5px;
+    border-top: 5px solid #000;
+  }
+
+  .piano__key--black {
+    display: inline-block;
+    background-color: #000;
+    width: 26px;
+    height: 110px;
+    margin-left: -13px;
+    margin-right: -13px;
+    z-index: 1;
+    position: relative;
+  }
+
+  .piano__key--scale,
+  .piano__key--root,
+  .piano__key--chord {
+    position: relative;
+
+    &:after {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      left: 3px;
+      // height: 10px;
+      height: 40px;
+      right: 3px;
+      bottom: 3px;
+      border-radius: 3px 3px 5px 5px;
     }
-    
-    .piano__key--root {
-        &:after {
-            border: 0;
-            background-color: $yellow;
-            height: 40px;
-        }
+  }
+
+  .piano__key--scale {
+    &:after {
+      // border: 2px solid $grey;
+      background: $grey;
     }
+  }
+
+
+  .piano__key--chord {
+    &:after {
+      border: 0;
+      height: 40px;
+      background-color: $grey;
+    }
+  }
+
+  .piano__key--root {
+    &:after {
+      border: 0;
+      background-color: $yellow;
+      height: 40px;
+    }
+  }

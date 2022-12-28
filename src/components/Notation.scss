@@ -1,33 +1,25 @@
-$noteHeight: 10px;
-$notesOnLine: E1 G1 B2 D2 F2;
-$notesOnSmLine: C1 A3;
-$smallLineWidth: 30px;
-$staffHeight: 110px;
-
 .notation {
-    width: 100%;
-    font-size: 20px;
-    text-align: center;
-    margin: 0 auto;
-    display: flex;
-    align-items: flex-end;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
 }
 
-    .notation__signature {
-        flex: 1;
+  .notation__signature {
+    flex: 1;
+  }
+
+  .notation__note {
+    flex: 1;
+  }
+
+    .notation__interval {
+      color: $grey-dark;
+      padding: 20px 0 10px;
     }
 
-    .notation__note {
-        flex: 1;
+    .notation__name {
+      padding: 20px 0 10px;
     }
-
-        .notation__note {}
-
-            .notation__interval {
-                color: $grey-dark;
-                padding: 20px 0 10px;
-            }
-
-            .notation__name {
-                padding: 20px 0 10px;
-            }

@@ -1,78 +1,82 @@
+$noteHeight: 10px;
+$notesOnLine: E1 G1 B2 D2 F2;
+$smallLineWidth: 30px;
+$staffHeight: 110px;
 
 .staff {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: $staffHeight;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: $staffHeight;
 }
 
-    .staff__space {
+  .staff__clef {
+    position: absolute;
+    top: 32px;
+    left: 3px;
+  }
+
+  .staff__sig {
+    position: relative;
+    text-align: left;
+    padding-left: 35px;
+
+    img {
+      height: 25px;
+    }
+
+    &.is--sharp {
+      top: -7px;
+    }
+
+    &.is--flat {
+      top: -13px;
+    }
+
+    @for $i from 0 through 6 {
+      &.is--#{$i} {
+        left: 10px * $i;
+      }
+    }
+  }
+
+  .staff__space {
+    display: block;
+    position: relative;
+    font-size: $noteHeight;
+    line-height: $noteHeight;
+    height: $noteHeight;
+    width: 100%;
+    text-align: center;
+    margin-top: -$noteHeight/ 2;
+
+    @each $note in $notesOnLine {
+      &.for--#{$note}:after {
+        content: '';
         display: block;
-        position: relative;
-        font-size: $noteHeight;
-        line-height: $noteHeight;
-        height: $noteHeight;
-        width: 100%;
-        text-align: center;
-        margin-top: -$noteHeight/ 2;
-
-        @each $note in $notesOnLine {
-            &.for--#{$note}:after {
-                content: '';
-                display: block;
-                position: absolute;
-                border-top: 1px solid #000;
-                width: 100%;
-                top: 50%;
-            }
-        }
-
-        &.for--A1,
-        &.for--A3,
-        &.for--C1,
-        &.for--C3,
-        &.for--E3,
-        &.for--G3 {
-            .staff__note::after {
-                content: '';
-                display: block;
-                position: absolute;
-                border-top: 1px solid #000;
-                width: $smallLineWidth;
-                top: 50%;
-                left: 50%;
-                margin-left: -$smallLineWidth / 2;
-
-            }
-        }
-    }
-
-    .staff__sig { 
-        position: relative;
-        text-align: left;
-        padding-left: 35px;
-        
-        img {
-            height: 25px;
-        }
-
-        &.is--sharp {
-            top: -7px;
-        }
-
-        &.is--flat {
-            top: -13px;
-        }
-
-        @for $i from 0 through 6 {
-            &.is--#{$i} {
-                left: 10px * $i;
-            }
-        }
-    }
-
-    .staff__clef {
         position: absolute;
-        top: 32px;
-        left: 3px;
+        border-top: 1px solid #000;
+        width: 100%;
+        top: 50%;
+      }
     }
+
+    &.for--A1,
+    &.for--A3,
+    &.for--C1,
+    &.for--C3,
+    &.for--E3,
+    &.for--G3 {
+      .staff__note::after {
+        content: '';
+        display: block;
+        position: absolute;
+        border-top: 1px solid #000;
+        width: $smallLineWidth;
+        top: 50%;
+        left: 50%;
+        margin-left: -$smallLineWidth / 2;
+
+      }
+    }
+  }
