@@ -1,14 +1,11 @@
 import React, { Fragment } from 'react'
 import Staff from './Staff.js'
 
-const majorIntervals = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°']
-const minorIntervals = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII']
-
-function Signature (props) {
+function Signature ({ sigNotes }) {
   return (
     <div className="notation__signature">
       <Staff
-        signature={props.signature}
+        signature={sigNotes}
         showClef={true}
         notes={[]}
       />
@@ -16,25 +13,26 @@ function Signature (props) {
   )
 }
 
-function Notes (props) {
-  const intervals = props.keyType === 'major'
-    ? majorIntervals
-    : minorIntervals
-  let octave = props.octave
+function Notes ({ activeScale, activeType, octave, showIntervals }) {
+  const majorIntervals = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°']
+  const minorIntervals = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII']
 
-  const noteGroups = props.notes.map((note, i) => {
+  const intervals = activeType === 'major' ? majorIntervals : minorIntervals
+  let newOctave = octave
+
+  const noteGroups = activeScale.map((note, i) => {
     const notes = Array.isArray(note) ? note : [note]
-    if (note.charAt(0) === 'A') octave += 1
+    if (note.charAt(0) === 'A') newOctave += 1
 
     return (
       <div key={'staff' + note} className="notation__note">
-        <div className="notation__interval">{props.showIntervals && intervals[i]}</div>
+        <div className="notation__interval">{showIntervals && intervals[i]}</div>
         <div className="Notation__name">{note}</div>
         <Staff
           notes={notes}
           signature={[]}
           showClef={false}
-          octave={octave}
+          octave={newOctave}
           key={'notationNotes' + note}
         />
       </div>
@@ -48,23 +46,21 @@ function Notes (props) {
   )
 }
 
-function Notation (props) {
-  const signature = props.notes.filter(note => note.length > 1)
-  const notes = props.octaves.map(octave => {
-    return (
-      <Notes
-        key={'notes' + octave}
-        notes={props.notes}
-        keyType={props.keyType}
-        octave={octave}
-        showIntervals={props.showIntervals && octave === 1}
-      />
-    )
-  })
+function Notation ({ activeScale, activeType, showIntervals, octaves }) {
+  const sigNotes = activeScale.filter(note => note.length > 1)
+  const notes = octaves.map(octave =>
+    <Notes
+      key={'notes' + octave}
+      activeScale={activeScale}
+      activeType={activeType}
+      octave={octave}
+      showIntervals={showIntervals && octave === 1}
+    />
+  )
 
   return (
     <div className="notation">
-      <Signature signature={signature} />
+      <Signature sigNotes={sigNotes} />
       {notes}
     </div>
   )

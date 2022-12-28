@@ -64,8 +64,13 @@ class App extends React.Component {
   render () {
     return (
       <div className="page">
-        <FifthsTable onClick={e => this.handleKeyChange(e)} activeKey={this.state.activeKey} />
-        <Scale activeKey={this.state.activeKey} />
+        <FifthsTable
+          activeKey={this.state.activeKey}
+          onClick={e => this.handleKeyChange(e)}
+        />
+        <Scale
+          activeKey={this.state.activeKey}
+        />
         {/* <Chords activeKey={this.state.activeKey} chords={this.state.activeKey.chords}/> */}
       </div>
     )

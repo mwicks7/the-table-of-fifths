@@ -1,97 +1,91 @@
 import React from 'react'
 
-const majorKeys = ['Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#']
-const minorKeys = ['Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#']
+const keys = {
+  major: ['Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#'],
+  minor: ['Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#']
+}
 
-const FifthsLink = (props) => {
+const FifthsLink = ({ keyTonic, keyType, onClick }) => {
   return (
     <a
       className="fifths-table__link"
-      href={'/#' + props.keyTonic}
-      data-key-tonic={props.keyTonic}
-      data-key-type={props.keyType}
-      onClick={props.onClick}
+      href={'/#' + keyTonic}
+      data-key-tonic={keyTonic}
+      data-key-type={keyType}
+      onClick={onClick}
     >
-      {props.keyTonic}
+      {keyTonic}
     </a>
   )
 }
 
-const FifthsCol = (props) => {
+const FifthsCol = ({ isCurrent, isPrev, isNext, isAlternate, children }) => {
   let cssClass
-  if (props.isCurrent) {
+  if (isCurrent) {
     cssClass = 'is--current'
-  } else if (props.isPrev) {
+  } else if (isPrev) {
     cssClass = 'is--prev'
-  } else if (props.isNext) {
+  } else if (isNext) {
     cssClass = 'is--next'
-  } else if (props.isAlternate) {
+  } else if (isAlternate) {
     cssClass = 'is--alternate'
   }
 
   return (
     <td className={cssClass}>
-      {props.children}
+      {children}
     </td>
   )
 }
 
-const FifthsRow = (props) => {
-  const activeIndex = props.activeKey.type === 'major'
-    ? majorKeys.indexOf(props.activeKey.tonic)
-    : minorKeys.indexOf(props.activeKey.tonic)
-  const lastIndex = props.keys.length - 1
-  const prevIndex = activeIndex === 0
-    ? lastIndex
-    : activeIndex - 1
-  const nextIndex = activeIndex === lastIndex
-    ? 0
-    : activeIndex + 1
-  const isSameType = props.activeKey.type === props.keyType
-
-  const columns = props.keys.map((keyTonic, i) => {
-    return (
-      <FifthsCol
-        key={props.keyType + keyTonic}
-        isCurrent={isSameType && props.activeKey.tonic === keyTonic}
-        isAlternate={!isSameType && i === activeIndex}
-        isPrev={isSameType && i === prevIndex}
-        isNext={isSameType && i === nextIndex}
-      >
-        <FifthsLink
-          keyTonic={keyTonic}
-          keyType={props.keyType}
-          onClick={props.onClick}
-        />
-      </FifthsCol>
-    )
-  })
+const FifthsRow = ({ rowKeyType, activeKeyType, activeKeyTonic, onClick }) => {
+  const rowKeys = keys[rowKeyType]
+  const activeCol = keys[activeKeyType].indexOf(activeKeyTonic)
+  const lastCol = rowKeys.length - 1
+  const prevCol = activeCol === 0 ? lastCol : activeCol - 1
+  const nextCol = activeCol === lastCol ? 0 : activeCol + 1
+  const isSameType = activeKeyType === rowKeyType
+  const columns = rowKeys.map((keyTonic, i) =>
+    <FifthsCol
+      key={rowKeyType + keyTonic}
+      isCurrent={isSameType && activeKeyTonic === keyTonic}
+      isAlternate={!isSameType && i === activeCol}
+      isPrev={isSameType && i === prevCol}
+      isNext={isSameType && i === nextCol}
+    >
+      <FifthsLink
+        keyTonic={keyTonic}
+        keyType={rowKeyType}
+        onClick={onClick}
+      />
+    </FifthsCol>
+  )
 
   return (
     <tr>
-      <th scope="row">{props.keyType + ':'}</th>
+      <th scope="row">{rowKeyType + ':'}</th>
       {columns}
     </tr>
   )
 }
 
-const FifthsTable = (props) => {
+const FifthsTable = ({ activeKey, onClick }) => {
   return (
     <table className="fifths-table">
       <caption>The Table of 5ths</caption>
       <tbody>
         <FifthsRow
-          keys={majorKeys}
-          keyType="major"
-          activeKey={props.activeKey}
-          onClick={props.onClick}
+          rowKeyType="major"
+          activeKeyType={activeKey.type}
+          activeKeyTonic={activeKey.tonic}
+          onClick={onClick}
         />
 
         <FifthsRow
-          keys={minorKeys}
-          keyType="minor"
-          activeKey={props.activeKey}
-          onClick={props.onClick}
+          rowKeyType="minor"
+          activeKeyType={activeKey.type}
+          activeKeyTonic={activeKey.tonic}
+          onClick={onClick}
         />
       </tbody>
     </table>

@@ -2,23 +2,22 @@ import React from 'react'
 import Instrument from './Instrument'
 import Notation from './Notation.js'
 
-function Scale (props) {
+function Scale ({ activeKey }) {
   return (
     <section>
       <header>
-        <h1>{props.activeKey.name}</h1>
+        <h1>{activeKey.name}</h1>
       </header>
 
       <Instrument
-        notes={props.activeKey.scale}
-        keyType={props.activeKey.type}
-        keyTonic={props.activeKey.tonic}
+        activeScale={activeKey.scale}
+        activeType={activeKey.type}
         copies={[1, 2, 3]}
       />
 
       <Notation
-        notes={props.activeKey.scale}
-        keyType={props.activeKey.type}
+        activeScale={activeKey.scale}
+        activeType={activeKey.type}
         showIntervals={true}
         octaves={[1, 2]}
       />

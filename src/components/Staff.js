@@ -1,6 +1,6 @@
 import React from 'react'
 
-const staffPositions = ['G3', 'F3', 'E3', 'D3', 'C3', 'B3', 'A3', 'G2', 'F2', 'E2', 'D2', 'C2', 'B2', 'A2', 'G1', 'F1', 'E1', 'D1', 'C1', 'B1', 'A1']
+const staffSpaces = ['G3', 'F3', 'E3', 'D3', 'C3', 'B3', 'A3', 'G2', 'F2', 'E2', 'D2', 'C2', 'B2', 'A2', 'G1', 'F1', 'E1', 'D1', 'C1', 'B1', 'A1']
 const sharpsOrder = ['F', 'C', 'G', 'D', 'A', 'E']
 const flatsOrder = ['B', 'E', 'A', 'D', 'G']
 
@@ -14,18 +14,13 @@ function symbolToText (text) {
   }
 }
 
-function sortSignature (a, b) {
-  if (a.charAt(1) === '#') {
-    return sharpsOrder.indexOf(a.charAt(0)) - sharpsOrder.indexOf(b.charAt(0))
-  } else {
-    return flatsOrder.indexOf(a.charAt(0)) - flatsOrder.indexOf(b.charAt(0))
-  }
+function sortSignature (noteA, noteB) {
+  const order = noteA.charAt(1) === '#' ? sharpsOrder : flatsOrder
+  return order.indexOf(noteA.charAt(0)) - order.indexOf(noteB.charAt(0))
 }
 
 function getSignatureType (signature) {
-  return signature.length > 0
-    ? symbolToText(signature[0].charAt(1))
-    : ''
+  return signature.length > 0 ? symbolToText(signature[0].charAt(1)) : ''
 }
 
 function convertSigToPos (sig) {
@@ -63,11 +58,11 @@ function NoteSymbol (props) {
   )
 }
 
-function StaffPosition (props) {
+function StaffSpace (props) {
   let signatureSymbol
   let noteSymbol
   const showSignature = props.sigPositions.length > 0 && props.sigPositions.includes(props.staffPos)
-  const showNotes = props.notePositions.length > 0 && props.notePositions.includes(props.staffPos)
+  const showNote = props.notePositions.length > 0 && props.notePositions.includes(props.staffPos)
 
   if (showSignature) {
     signatureSymbol = (
@@ -79,7 +74,7 @@ function StaffPosition (props) {
     )
   }
 
-  if (showNotes) {
+  if (showNote) {
     noteSymbol = (
       <NoteSymbol
         key={'staffNote' + props.staffPos}
@@ -96,28 +91,23 @@ function StaffPosition (props) {
 }
 
 function Staff (props) {
-  const clef = props.showClef
-    ? <ClefSymbol />
-    : ''
   const sigType = getSignatureType(props.signature)
-  const sigPositions = props.signature.sort(sortSignature).map((sig) => convertSigToPos(sig))
-  const notePositions = props.notes.map((note) => convertNoteToPos(note, props.octave))
+  const sigPositions = props.signature.sort(sortSignature).map(sig => convertSigToPos(sig))
+  const notePositions = props.notes.map(note => convertNoteToPos(note, props.octave))
 
-  const staff = staffPositions.map(staffPos => {
-    return (
-      <StaffPosition
-        staffPos={staffPos}
-        sigType={sigType}
-        sigPositions={sigPositions}
-        notePositions={notePositions}
-        key={'staffPosition' + staffPos}
-      />
-    )
-  })
+  const staff = staffSpaces.map(staffPos =>
+    <StaffSpace
+      staffPos={staffPos}
+      sigType={sigType}
+      sigPositions={sigPositions}
+      notePositions={notePositions}
+      key={'StaffSpace' + staffPos}
+    />
+  )
 
   return (
     <div className="staff">
-      {clef}
+      {props.showClef && <ClefSymbol />}
       {staff}
     </div>
   )
