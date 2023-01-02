@@ -2,29 +2,28 @@ import React from 'react'
 import { Chord } from 'tonal'
 
 import Instrument from './Instrument'
-import NotationTable from './Notation.js'
+import Notation from './Notation.js'
 
 function ChordSection (props) {
   const notes = Chord.get(props.chord).notes
-  // const notesDup = Chord.get(props.chord).notes
 
   return (
     <section className="chord">
       <header>
-        <h1>{props.chord}</h1>
+        <h2>{props.chord}</h2>
       </header>
 
       <Instrument
-        notes={notes}
-        keyType={props.activeKey.type}
-        keyTonic={props.activeKey.tonic}
-        copies={[1]}
+        activeScale={notes}
+        activeType={props.activeKey.type}
+        copies={[1, 2]}
       />
-
-      <NotationTable
-        notes={notes}
+      <Notation
+        activeScale={notes}
+        activeType={props.activeKey.type}
         showIntervals={false}
-        octaves={[1]}
+        showRoot={false}
+        octaves={[1, 2]}
       />
     </section>
   )

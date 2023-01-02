@@ -13,7 +13,7 @@ function Signature ({ sigNotes }) {
   )
 }
 
-function Notes ({ activeScale, activeType, octave, showIntervals }) {
+function Notes ({ activeScale, activeType, octave, showIntervals, showNotes }) {
   const majorIntervals = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°']
   const minorIntervals = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII']
 
@@ -27,7 +27,7 @@ function Notes ({ activeScale, activeType, octave, showIntervals }) {
     return (
       <div key={'staff' + note} className="notation__note">
         <div className="notation__interval">{showIntervals && intervals[i]}</div>
-        <div className="Notation__name">{note}</div>
+        <div className="Notation__name">{showNotes && note}</div>
         <Staff
           notes={notes}
           signature={[]}
