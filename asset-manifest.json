@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/the-table-of-fifths/static/css/main.3c1bb954.css",
-    "main.js": "/the-table-of-fifths/static/js/main.8440acc8.js",
+    "main.css": "/the-table-of-fifths/static/css/main.d206e9a6.css",
+    "main.js": "/the-table-of-fifths/static/js/main.0896c38d.js",
     "static/js/787.cc984a1c.chunk.js": "/the-table-of-fifths/static/js/787.cc984a1c.chunk.js",
     "index.html": "/the-table-of-fifths/index.html",
-    "main.3c1bb954.css.map": "/the-table-of-fifths/static/css/main.3c1bb954.css.map",
-    "main.8440acc8.js.map": "/the-table-of-fifths/static/js/main.8440acc8.js.map",
+    "main.d206e9a6.css.map": "/the-table-of-fifths/static/css/main.d206e9a6.css.map",
+    "main.0896c38d.js.map": "/the-table-of-fifths/static/js/main.0896c38d.js.map",
     "787.cc984a1c.chunk.js.map": "/the-table-of-fifths/static/js/787.cc984a1c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3c1bb954.css",
-    "static/js/main.8440acc8.js"
+    "static/css/main.d206e9a6.css",
+    "static/js/main.0896c38d.js"
   ]
 }
