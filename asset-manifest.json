@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/the-table-of-fifths/static/css/main.d206e9a6.css",
-    "main.js": "/the-table-of-fifths/static/js/main.0896c38d.js",
+    "main.js": "/the-table-of-fifths/static/js/main.953a6312.js",
     "static/js/787.cc984a1c.chunk.js": "/the-table-of-fifths/static/js/787.cc984a1c.chunk.js",
     "index.html": "/the-table-of-fifths/index.html",
     "main.d206e9a6.css.map": "/the-table-of-fifths/static/css/main.d206e9a6.css.map",
-    "main.0896c38d.js.map": "/the-table-of-fifths/static/js/main.0896c38d.js.map",
+    "main.953a6312.js.map": "/the-table-of-fifths/static/js/main.953a6312.js.map",
     "787.cc984a1c.chunk.js.map": "/the-table-of-fifths/static/js/787.cc984a1c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d206e9a6.css",
-    "static/js/main.0896c38d.js"
+    "static/js/main.953a6312.js"
   ]
 }
