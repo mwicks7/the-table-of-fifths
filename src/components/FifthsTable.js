@@ -5,17 +5,16 @@ const keys = {
   minor: ['Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#']
 }
 
-const FifthsLink = ({ keyTonic, keyType, onClick }) => {
+const FifthsButton = ({ keyTonic, keyType, onClick }) => {
   return (
-    <a
-      className="fifths-table__link"
-      href={'/#' + keyTonic}
+    <button
+      className="fifths-table__btn"
       data-key-tonic={keyTonic}
       data-key-type={keyType}
       onClick={onClick}
     >
       {keyTonic}
-    </a>
+    </button>
   )
 }
 
@@ -53,7 +52,7 @@ const FifthsRow = ({ rowKeyType, activeKeyType, activeKeyTonic, onClick }) => {
       isPrev={isSameType && i === prevCol}
       isNext={isSameType && i === nextCol}
     >
-      <FifthsLink
+      <FifthsButton
         keyTonic={keyTonic}
         keyType={rowKeyType}
         onClick={onClick}
