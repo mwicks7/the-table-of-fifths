@@ -19,7 +19,7 @@ function Scale ({ activeKey }) {
         activeScale={activeKey.scale}
         activeType={activeKey.type}
         showIntervals={true}
-        showNotes={true}
+        showRoot={true}
         octaves={[1, 2]}
       />
     </section>
