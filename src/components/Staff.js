@@ -1,3 +1,8 @@
+import wholeNote from '../images/note_whole.svg'
+import trebleClef from '../images/clef_treble.svg'
+import flatSym from '../images/acc_flat.svg'
+import sharpSym from '../images/acc_sharp.svg'
+
 import React from 'react'
 
 const staffSpaces = ['G3', 'F3', 'E3', 'D3', 'C3', 'B3', 'A3', 'G2', 'F2', 'E2', 'D2', 'C2', 'B2', 'A2', 'G1', 'F1', 'E1', 'D1', 'C1', 'B1', 'A1']
@@ -37,15 +42,16 @@ function convertNoteToPos (note, octave) {
 function ClefSymbol () {
   return (
     <div className="staff__clef is--treble">
-      <img src="images/clef_treble.svg" />
+      <img src={trebleClef} />
     </div>
   )
 }
 
 function SignatureSymbol (props) {
+  const sym = props.sigType === 'sharp' ? sharpSym : flatSym
   return (
     <div className={'staff__sig is--' + props.sigIndex + ' is--' + props.sigType} >
-      <img src={'images/acc_' + props.sigType + '.svg'} />
+      <img src={sym} />
     </div>
   )
 }
@@ -53,7 +59,7 @@ function SignatureSymbol (props) {
 function NoteSymbol (props) {
   return (
     <div className="staff__note" >
-      <img src="images/note_whole.svg" />
+      <img src={wholeNote} />
     </div>
   )
 }
