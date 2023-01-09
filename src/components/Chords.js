@@ -8,9 +8,9 @@ function ChordSection (props) {
   const notes = Chord.get(props.chord).notes
 
   return (
-    <section className="chord">
+    <section className="chords__chord">
       <header>
-        <h2>{props.chord}</h2>
+        <h3>{props.chord}</h3>
       </header>
 
       <Instrument
@@ -40,7 +40,12 @@ function Chords (props) {
 
   return (
     <section className="chords">
-      {chords}
+      <header>
+        <h2>Chords</h2>
+      </header>
+      <div className="chords__grid">
+        {chords}
+      </div>
     </section>
   )
 }

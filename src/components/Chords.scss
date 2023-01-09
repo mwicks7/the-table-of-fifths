@@ -1,10 +1,20 @@
 .chords {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 2%;
+  text-align: center;
 }
 
-  .chord {
-    margin: 40px 0;
+  .chords__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 2%;
+  }
+
+  .chords__chord {
+    margin: 0 0 40px;
     flex-basis: 49%;
   }
+
+  .chords__chord:nth-child(5) {
+    flex-basis: 50%;
+  }
+

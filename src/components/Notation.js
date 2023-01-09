@@ -13,26 +13,37 @@ function Signature ({ sigNotes }) {
   )
 }
 
+function Interval ({ intervals, i }) {
+  <div className="notation__interval">{intervals[i]}</div>
+}
+
+function Name ({ note }) {
+  <div className="notation__name">{note}</div>
+}
+
 function Notes ({ activeScale, activeType, octave, showIntervals, showRoot }) {
   const majorIntervals = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°']
   const minorIntervals = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII']
-
   const intervals = activeType === 'major' ? majorIntervals : minorIntervals
-  let newOctave = octave
+  let incrementalOctave = octave
 
   const noteGroups = activeScale.map((note, i) => {
     const notes = Array.isArray(note) ? note : [note]
-    if (note.charAt(0) === 'A') newOctave += 1
+    const intervalDOM = <Interval intervals={intervals} i={i}/>
+    const rootDOM = <Name note={note}/>
+
+    if (note.charAt(0) === 'A') incrementalOctave += 1
 
     return (
       <div key={'staff' + note} className="notation__note">
-        <div className="notation__interval">{showIntervals && intervals[i]}</div>
+        {showIntervals && intervalDOM}
+        {showRoot && rootDOM}
         <div className="Notation__name">{showRoot && note}</div>
         <Staff
           notes={notes}
           signature={[]}
           showClef={false}
-          octave={newOctave}
+          octave={incrementalOctave}
           key={'notationNotes' + note}
         />
       </div>

@@ -5,15 +5,16 @@ import Notation from './Notation.js'
 function Scale ({ activeKey }) {
   return (
     <section>
-      <header>
-        <h1>{activeKey.name}</h1>
-      </header>
 
       <Instrument
         activeScale={activeKey.scale}
         activeType={activeKey.type}
         copies={[1, 2, 3]}
       />
+
+      <header>
+        <h1>{activeKey.name}</h1>
+      </header>
 
       <Notation
         activeScale={activeKey.scale}

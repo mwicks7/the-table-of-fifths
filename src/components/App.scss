@@ -2,6 +2,16 @@ body {
   font-family: $font-family;
 }
 
+h1, h2 {
+  font-size: $font-lrg;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: $font-med;
+  font-weight: normal;
+}
+
 table {
   table-layout: fixed;
   width: 100%;
