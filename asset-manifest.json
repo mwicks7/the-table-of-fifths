@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/the-table-of-fifths/static/css/main.d206e9a6.css",
-    "main.js": "/the-table-of-fifths/static/js/main.953a6312.js",
+    "main.css": "/the-table-of-fifths/static/css/main.a8bed87f.css",
+    "main.js": "/the-table-of-fifths/static/js/main.7e9c9a21.js",
     "static/js/787.cc984a1c.chunk.js": "/the-table-of-fifths/static/js/787.cc984a1c.chunk.js",
+    "static/media/clef_treble.svg": "/the-table-of-fifths/static/media/clef_treble.e4da224d2006ed7ec9802a1567b557c9.svg",
     "index.html": "/the-table-of-fifths/index.html",
-    "main.d206e9a6.css.map": "/the-table-of-fifths/static/css/main.d206e9a6.css.map",
-    "main.953a6312.js.map": "/the-table-of-fifths/static/js/main.953a6312.js.map",
+    "static/media/note_whole.svg": "/the-table-of-fifths/static/media/note_whole.43cffe08fd1df452b5a8094825f88e00.svg",
+    "static/media/acc_flat.svg": "/the-table-of-fifths/static/media/acc_flat.67ec594185d1555170d388a783ab4d70.svg",
+    "static/media/acc_sharp.svg": "/the-table-of-fifths/static/media/acc_sharp.b6752f7a531c9c549d07f198f6053abd.svg",
+    "main.a8bed87f.css.map": "/the-table-of-fifths/static/css/main.a8bed87f.css.map",
+    "main.7e9c9a21.js.map": "/the-table-of-fifths/static/js/main.7e9c9a21.js.map",
     "787.cc984a1c.chunk.js.map": "/the-table-of-fifths/static/js/787.cc984a1c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d206e9a6.css",
-    "static/js/main.953a6312.js"
+    "static/css/main.a8bed87f.css",
+    "static/js/main.7e9c9a21.js"
   ]
 }
