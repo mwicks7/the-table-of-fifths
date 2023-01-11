@@ -1,5 +1,5 @@
 # The Table of Fifths
-You might be familiar with the circle of fifths. Well, this App literally re-invents the wheel. Utilizing instrument diagrams and music notation you can learn fundamental key signatures and the relationships between them.
+You might be familiar with the "Circle of Fifths". Well, "The Table of Fifths" literally re-invents the wheel. Utilizing instrument diagrams and music notation you can learn fundamental key signatures and the relationships between them.
 
 Made with: React and tonal.js
 
