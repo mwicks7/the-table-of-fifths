@@ -8,6 +8,7 @@ import React from 'react'
 const staffSpaces = ['G3', 'F3', 'E3', 'D3', 'C3', 'B3', 'A3', 'G2', 'F2', 'E2', 'D2', 'C2', 'B2', 'A2', 'G1', 'F1', 'E1', 'D1', 'C1', 'B1', 'A1']
 const sharpsOrder = ['F', 'C', 'G', 'D', 'A', 'E']
 const flatsOrder = ['B', 'E', 'A', 'D', 'G']
+const notesOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
 function symbolToText (text) {
   if (text === '#') {
@@ -35,8 +36,17 @@ function convertSigToPos (sig) {
     : tonic + '2'
 }
 
-function convertNoteToPos (note, octave) {
-  return note.charAt(0) + octave
+function convertNotesToPos (notes, octave) {
+  let prevNote
+  let octaveIncrement = octave
+
+  const notePositions = notes.map((note, i) => {
+    if (i > 1 && notesOrder.indexOf(note.charAt(0) < notesOrder.indexOf(prevNote).charAt(0))) octaveIncrement += 1
+    prevNote = note
+    return note.charAt(0) + octaveIncrement
+  })
+
+  return notePositions
 }
 
 function ClefSymbol () {
@@ -99,7 +109,7 @@ function StaffSpace (props) {
 function Staff (props) {
   const sigType = getSignatureType(props.signature)
   const sigPositions = props.signature.sort(sortSignature).map(sig => convertSigToPos(sig))
-  const notePositions = props.notes.map(note => convertNoteToPos(note, props.octave))
+  const notePositions = convertNotesToPos(props.notes, props.octave)
 
   const staff = staffSpaces.map(staffPos =>
     <StaffSpace

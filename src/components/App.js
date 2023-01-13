@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props)
     const keyName = 'C'
     const keyData = Key.majorKey(keyName)
-    const chord = Chord.get(keyData.chords[0])
+    const chord = Chord.get(keyData.triads[0])
 
     this.state = {
       activeKey: {
@@ -20,7 +20,7 @@ class App extends React.Component {
         tonic: keyData.tonic,
         type: keyData.type,
         scale: keyData.scale,
-        chords: keyData.chords
+        chords: keyData.triads
       },
       activeChord: {
         notes: chord.notes.slice(0, 3)
@@ -35,7 +35,7 @@ class App extends React.Component {
       ? Key.majorKey(newKeyTonic)
       : Key.minorKey(newKeyTonic).natural
     const newKeyName = newKeyTonic + ' ' + newKeyType
-    const newChord = Chord.get(newKeyData.chords[0])
+    const newChord = Chord.get(newKeyData.triads[0])
 
     this.setState({
       activeKey: {
@@ -43,7 +43,7 @@ class App extends React.Component {
         tonic: newKeyData.tonic,
         type: newKeyType,
         scale: newKeyData.scale,
-        chords: newKeyData.chords
+        chords: newKeyData.triads
       },
       activeChord: {
         notes: newChord.notes.slice(0, 3)

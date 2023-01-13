@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import Staff from './Staff.js'
 
+const notesOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+
 function Signature ({ sigNotes, keyName }) {
   return (
     <div className="notation__signature">
@@ -27,13 +29,14 @@ function Notes ({ activeScale, activeType, octave, showIntervals, showRoot }) {
   const minorIntervals = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII']
   const intervals = activeType === 'major' ? majorIntervals : minorIntervals
   let incrementalOctave = octave
+  let prevNote
 
   const noteGroups = activeScale.map((note, i) => {
     const notes = Array.isArray(note) ? note : [note]
     const intervalDOM = <Interval intervals={intervals} i={i}/>
     const rootDOM = <Name note={note}/>
-
-    if (note.charAt(0) === 'A') incrementalOctave += 1
+    if (i > 0 && notesOrder.indexOf(note.charAt(0)) < notesOrder.indexOf(prevNote)) incrementalOctave += 1
+    prevNote = note.charAt(0)
 
     return (
       <div key={'staff' + note} className="notation__note">
