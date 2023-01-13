@@ -1,12 +1,13 @@
 .fifths-table {
   width: 100%;
-  border-bottom: 2px solid $grey-lightest;
+  border-bottom: 1px solid black;
 
   caption {
     font-size: $font-lrg;
     padding: 0.67em;
     text-align: center;
-    border-bottom: 2px solid $grey-lightest;
+    // border-bottom: 2px solid $grey-lightest;
+    border-bottom: 1px solid black;
   }
 }
 
@@ -25,20 +26,24 @@
     background: transparent;
     border: 0;
     cursor: pointer;
+    border-radius: 3px;
+
 
     .is--current & {
-      background: $yellow-light;
+      background: $color-highlight;
       min-width: 60px;
       font-size: $font-lrg;
+      border: 1px solid black;
     }
 
     .is--next &,
     .is--prev & {
-      background: $grey-light;
+      background: $grey;
     }
 
     .is--alternate & {
-      background: $grey-light;
+      background: $color-highlight-light;
+      background: $grey;
       border-top: 0;
       border-bottom: 0;
     }

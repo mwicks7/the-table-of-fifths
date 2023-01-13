@@ -5,7 +5,7 @@ import { Key, Chord } from 'tonal'
 
 import FifthsTable from './FifthsTable.js'
 import Scale from './Scale.js'
-// import Chords from './Chords.js'
+import Chords from './Chords.js'
 
 class App extends React.Component {
   constructor (props) {
@@ -71,7 +71,7 @@ class App extends React.Component {
         <Scale
           activeKey={this.state.activeKey}
         />
-        {/* <Chords activeKey={this.state.activeKey} chords={this.state.activeKey.chords}/> */}
+        <Chords activeKey={this.state.activeKey} chords={this.state.activeKey.chords}/>
       </div>
     )
   }

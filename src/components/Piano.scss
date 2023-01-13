@@ -26,44 +26,29 @@
     position: relative;
   }
 
-  .piano__key--scale,
-  .piano__key--root,
-  .piano__key--chord {
-    position: relative;
-
-    &:after {
-      content: '';
-      box-sizing: border-box;
-      position: absolute;
-      left: 3px;
-      // height: 10px;
-      height: 40px;
-      right: 3px;
-      bottom: 3px;
-      border-radius: 3px 3px 5px 5px;
-    }
-  }
-
   .piano__key--scale {
-    &:after {
-      // border: 2px solid $grey;
-      background: $grey;
-    }
+    background: $grey;
   }
 
-
   .piano__key--chord {
-    &:after {
-      border: 0;
-      height: 40px;
-      background-color: $grey;
-    }
+    background: $grey;
   }
 
   .piano__key--root {
-    &:after {
-      border: 0;
-      background-color: $yellow;
-      height: 40px;
-    }
+    background-color: $color-highlight;
   }
+
+  .piano__key--fifth {
+    background-color: $grey-dark;
+  }
+
+    .piano__key-name {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 10px;
+      
+      .piano__key:disabled & {
+        display: none;
+      }
+    }

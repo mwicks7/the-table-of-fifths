@@ -1,31 +1,6 @@
 import React from 'react'
-
-function PianoKey ({ note, activeScale }) {
-  let cssClass = 'piano__key'
-  if (note.length > 1) cssClass += ' piano__key--black'
-  if (note === activeScale[0]) cssClass += ' piano__key--root'
-  if (activeScale.includes(note)) cssClass += ' piano__key--scale'
-
-  return (
-    <button className={cssClass} />
-  )
-}
-
-function Piano ({ instNotes, activeScale }) {
-  const pianoKeys = instNotes.map(note =>
-    <PianoKey
-      note={note}
-      activeScale={activeScale}
-      key={'pianokey' + note}
-    />
-  )
-
-  return (
-    <section className="piano">
-      {pianoKeys}
-    </section>
-  )
-}
+import Piano from './Piano.js'
+import Guitar from './Guitar.js'
 
 function Instrument ({ activeScale, activeType, copies }) {
   const notesWithSharps = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
@@ -38,7 +13,8 @@ function Instrument ({ activeScale, activeType, copies }) {
   const instNotes = useFlat ? notesWithFlats : notesWithSharps
 
   return (
-    <section className="instrument">
+    <>
+    {/* <section className="instrument">
       {copies.map(copy =>
         <Piano
           activeScale={activeScale}
@@ -46,7 +22,15 @@ function Instrument ({ activeScale, activeType, copies }) {
           key={'piano' + copy}
         />
       )}
+    </section> */}
+    <section className="instrument">
+      <Guitar
+        activeScale={activeScale}
+        instNotes={instNotes}
+      />
     </section>
+
+    </>
   )
 }
 

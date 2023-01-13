@@ -4,7 +4,7 @@ import Staff from './Staff.js'
 function Signature ({ sigNotes, keyName }) {
   return (
     <div className="notation__signature">
-      <Name note={keyName + ':'}/>
+      <Name note={keyName}/>
       <Staff
         signature={sigNotes}
         showClef={true}

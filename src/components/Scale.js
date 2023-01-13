@@ -15,7 +15,7 @@ function Scale ({ activeKey }) {
         copies={[1, 2, 3]}
       />
       <Notation
-        keyName={activeKey.name}
+        keyName=''
         activeScale={activeKey.scale}
         activeType={activeKey.type}
         showIntervals={true}

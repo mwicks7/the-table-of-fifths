@@ -42,7 +42,7 @@ function convertNoteToPos (note, octave) {
 function ClefSymbol () {
   return (
     <div className="staff__clef is--treble">
-      <img src={trebleClef} />
+      <img src={trebleClef} alt="Treble Clef"/>
     </div>
   )
 }
@@ -51,7 +51,7 @@ function SignatureSymbol (props) {
   const sym = props.sigType === 'sharp' ? sharpSym : flatSym
   return (
     <div className={'staff__sig is--' + props.sigIndex + ' is--' + props.sigType} >
-      <img src={sym} />
+    <img src={sym} alt={props.sigType}/>
     </div>
   )
 }
@@ -59,7 +59,7 @@ function SignatureSymbol (props) {
 function NoteSymbol (props) {
   return (
     <div className="staff__note" >
-      <img src={wholeNote} />
+      <img src={wholeNote} alt="Whole notes" />
     </div>
   )
 }

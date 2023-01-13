@@ -1,0 +1,95 @@
+.guitar{
+  width: 100%;
+  position: relative;
+}
+
+  .guitar__string {
+    display: flex;
+    flex-wrap: nowrap;
+    // gap: 1px;
+    position: relative;
+    
+    // &:after {
+      //   content: '';
+      //   display: block;
+      //   height: 1px;
+      
+      //   background-color: black;;
+      //   position: absolute;
+      //   left: 0;
+      //   right: 0;
+      //   top: 50%;
+      // }
+    }
+    
+    .guitar__fret {
+      flex: 1;
+      background-color: white;
+      border: 0;
+      margin-bottom: -1px;
+      margin-right: -1px;
+      border: 1px solid black;
+      // border: 1px solid black;
+      height: 30px;
+      // border-bottom: 1px solid black;
+      
+      &:nth-of-type(6),
+      &:nth-of-type(8)   {
+        // border-right:  solid black;
+      }
+    }
+
+    .guitar__fret--scale {
+      background: $grey;
+    }
+
+    .guitar__fret--root {
+      background: $color-highlight;
+    }
+
+    .guitar__fret--fifth {
+      background: $grey-dark;
+    }
+
+    .guitar__fret-name {
+      // visibility: hidden;
+      .guitar__fret:disabled & {
+        visibility: hidden;
+      }
+    }
+
+    .guitar__fret--open {
+      margin-right: 5px;
+      border-color: white;
+    }
+
+    .guitar__fret-markers {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+      
+      .guitar__fret-marker {
+        flex: 1;
+        text-align: center;
+
+        &:first-of-type {
+          margin-right: 5px;
+        }
+
+        &:nth-of-type(4):before,
+        &:nth-of-type(6):before,
+        &:nth-of-type(6):after,
+        &:nth-of-type(6):before,
+        &:nth-of-type(8):before,
+        &:nth-of-type(10):before,
+        &:nth-of-type(13):before,
+        &:nth-of-type(13):after {
+          content: '';
+          display: inline-block;
+          height: 5px;
+          width: 5px;
+          background: black;
+          border-radius: 50%;
+          margin: 2px;
+        }
+      }

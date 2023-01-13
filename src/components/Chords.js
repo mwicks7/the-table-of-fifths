@@ -16,13 +16,14 @@ function ChordSection (props) {
       <Instrument
         activeScale={notes}
         activeType={props.activeKey.type}
-        copies={[1, 2]}
+        copies={[1]}
       />
       <Notation
+        keyName=''
         activeScale={notes}
         activeType={props.activeKey.type}
         showIntervals={false}
-        showRoot={false}
+        showRoot={true}
         octaves={[1, 2]}
       />
     </section>
@@ -41,7 +42,7 @@ function Chords (props) {
   return (
     <section className="chords">
       <header>
-        <h2>Chords</h2>
+        {/* <h2>Chords</h2> */}
       </header>
       <div className="chords__grid">
         {chords}
