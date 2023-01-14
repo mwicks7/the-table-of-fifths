@@ -9,17 +9,17 @@ function ChordSection (props) {
 
   return (
     <section className="chords__chord">
-      <header>
+      {/* <header>
         <h3>{props.chord}</h3>
-      </header>
+      </header> */}
 
-      <Instrument
+      {/* <Instrument
         activeScale={notes}
         activeType={props.activeKey.type}
         copies={[1]}
-      />
+      /> */}
       <Notation
-        keyName=''
+        keyName={'i'}
         activeScale={notes}
         activeType={props.activeKey.type}
         showIntervals={false}
@@ -42,7 +42,7 @@ function Chords (props) {
   return (
     <section className="chords">
       <header>
-        {/* <h2>Chords</h2> */}
+        <h2>Triads</h2>
       </header>
       <div className="chords__grid">
         {chords}

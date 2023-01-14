@@ -69,7 +69,7 @@ function Notation ({ keyName, activeScale, activeType, showIntervals, octaves, s
       activeType={activeType}
       octave={octave}
       showIntervals={showIntervals && octave === 1}
-      showRoot={showRoot}
+      showRoot={showRoot && octave === 1}
     />
   )
 
