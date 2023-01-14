@@ -2,13 +2,12 @@ import wholeNote from '../images/note_whole.svg'
 import trebleClef from '../images/clef_treble.svg'
 import flatSym from '../images/acc_flat.svg'
 import sharpSym from '../images/acc_sharp.svg'
-
+import GlobalVars from '../helpers/globalVars'
 import React from 'react'
 
 const staffSpaces = ['G3', 'F3', 'E3', 'D3', 'C3', 'B3', 'A3', 'G2', 'F2', 'E2', 'D2', 'C2', 'B2', 'A2', 'G1', 'F1', 'E1', 'D1', 'C1', 'B1', 'A1']
 const sharpsOrder = ['F', 'C', 'G', 'D', 'A', 'E']
 const flatsOrder = ['B', 'E', 'A', 'D', 'G']
-const notesOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
 function symbolToText (text) {
   if (text === '#') {
@@ -41,7 +40,7 @@ function convertNotesToPos (notes, octave) {
   let octaveIncrement = octave
 
   const notePositions = notes.map((note, i) => {
-    if (i > 1 && notesOrder.indexOf(note.charAt(0) < notesOrder.indexOf(prevNote).charAt(0))) octaveIncrement += 1
+    if (i > 1 && GlobalVars.notesOrder.indexOf(note.charAt(0) < GlobalVars.notesOrder.indexOf(prevNote).charAt(0))) octaveIncrement += 1
     prevNote = note
     return note.charAt(0) + octaveIncrement
   })

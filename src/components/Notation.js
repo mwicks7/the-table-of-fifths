@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import Staff from './Staff.js'
-
-const notesOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+import GlobalVars from '../helpers/globalVars'
 
 function Signature ({ sigNotes, keyName }) {
   return (
@@ -16,41 +15,40 @@ function Signature ({ sigNotes, keyName }) {
   )
 }
 
-function Interval ({ intervals, i }) {
-  return <div className="notation__interval">{intervals[i]}</div>
+function Interval ({ interval }) {
+  return <div className="notation__interval">{interval}</div>
 }
 
 function Name ({ note }) {
   return <div className="notation__name">{note}</div>
 }
 
-function Notes ({ activeScale, activeType, octave, showIntervals, showRoot }) {
-  const majorIntervals = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°']
-  const minorIntervals = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII']
-  const intervals = activeType === 'major' ? majorIntervals : minorIntervals
-  let incrementalOctave = octave
-  let prevNote
+function Notes ({ activeKey, notes, octaves, showIntervals, showRoot }) {
+  const noteGroups = octaves.map((octave) => {
+    let incrementalOctave = octave
+    let prevNote
 
-  const noteGroups = activeScale.map((note, i) => {
-    const notes = Array.isArray(note) ? note : [note]
-    const intervalDOM = <Interval intervals={intervals} i={i}/>
-    const rootDOM = <Name note={note}/>
-    if (i > 0 && notesOrder.indexOf(note.charAt(0)) < notesOrder.indexOf(prevNote)) incrementalOctave += 1
-    prevNote = note.charAt(0)
+    return notes.map((note, i) => {
+      const noteStack = Array.isArray(note) ? note : [note]
+      noteStack.forEach((ns) => {
+        if (i > 0 && GlobalVars.notesOrder.indexOf(ns.charAt(0)) < GlobalVars.notesOrder.indexOf(prevNote.charAt(0))) incrementalOctave++
+        prevNote = ns
+      })
 
-    return (
-      <div key={'staff' + note} className="notation__note">
-        {showIntervals && intervalDOM}
-        {showRoot && rootDOM}
-        <Staff
-          notes={notes}
-          signature={[]}
-          showClef={false}
-          octave={incrementalOctave}
-          key={'notationNotes' + note}
-        />
-      </div>
-    )
+      return (
+        <div key={'staff' + note} className="notation__note">
+          {(showIntervals && octave === 1) && <Interval interval={activeKey.intervals[i]}/>}
+          {(showRoot && octave === 1) && <Name note={note}/>}
+          <Staff
+            notes={noteStack}
+            signature={[]}
+            showClef={false}
+            octave={incrementalOctave}
+            key={'notationNotes' + note}
+          />
+        </div>
+      )
+    })
   })
 
   return (
@@ -60,23 +58,20 @@ function Notes ({ activeScale, activeType, octave, showIntervals, showRoot }) {
   )
 }
 
-function Notation ({ keyName, activeScale, activeType, showIntervals, octaves, showRoot }) {
-  const sigNotes = activeScale.filter(note => note.length > 1)
-  const notes = octaves.map(octave =>
-    <Notes
-      key={'notes' + octave}
-      activeScale={activeScale}
-      activeType={activeType}
-      octave={octave}
-      showIntervals={showIntervals && octave === 1}
-      showRoot={showRoot && octave === 1}
-    />
-  )
-
+function Notation ({ label, activeKey, notes, octaves, showIntervals, showRoot }) {
   return (
     <div className="notation">
-      <Signature sigNotes={sigNotes} keyName={keyName} />
-      {notes}
+      <Signature
+        sigNotes={activeKey.scale.filter(note => note.length > 1)}
+        keyName={label}
+      />
+      <Notes
+        activeKey={activeKey}
+        notes={notes}
+        octaves={octaves}
+        showIntervals={showIntervals}
+        showRoot={showRoot}
+      />
     </div>
   )
 }

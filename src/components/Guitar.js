@@ -42,7 +42,6 @@ function Guitar ({ instNotes, activeScale }) {
       .slice(tuningIndex, instNotes.length)
       .concat(instNotes.slice(0, tuningIndex))
       .concat([tuning])
-    // frets = frets.concat(frets.slice(0, 6))
 
     return (
       <GuitarString
@@ -57,7 +56,6 @@ function Guitar ({ instNotes, activeScale }) {
     <div className="guitar">
       <FretMarkers />
       {guitarStrings}
-      {/* <FretMarkers /> */}
     </div>
   )
 }

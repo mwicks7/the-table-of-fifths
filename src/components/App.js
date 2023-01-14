@@ -6,6 +6,7 @@ import { Key, Chord } from 'tonal'
 import FifthsTable from './FifthsTable.js'
 import Scale from './Scale.js'
 import Chords from './Chords.js'
+import globalVars from '../helpers/globalVars'
 
 class App extends React.Component {
   constructor (props) {
@@ -20,7 +21,8 @@ class App extends React.Component {
         tonic: keyData.tonic,
         type: keyData.type,
         scale: keyData.scale,
-        chords: keyData.triads
+        chords: keyData.triads,
+        intervals: globalVars.intervals[keyData.type]
       },
       activeChord: {
         notes: chord.notes.slice(0, 3)
@@ -43,7 +45,8 @@ class App extends React.Component {
         tonic: newKeyData.tonic,
         type: newKeyType,
         scale: newKeyData.scale,
-        chords: newKeyData.triads
+        chords: newKeyData.triads,
+        intervals: globalVars.intervals[newKeyType]
       },
       activeChord: {
         notes: newChord.notes.slice(0, 3)
@@ -71,7 +74,10 @@ class App extends React.Component {
         <Scale
           activeKey={this.state.activeKey}
         />
-        <Chords activeKey={this.state.activeKey} chords={this.state.activeKey.chords}/>
+        <Chords
+          activeKey={this.state.activeKey}
+          chords={this.state.activeKey.chords}
+        />
       </div>
     )
   }

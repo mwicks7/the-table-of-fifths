@@ -1,20 +1,19 @@
 import React from 'react'
 import Piano from './Piano.js'
 import Guitar from './Guitar.js'
+import GlobalVars from '../helpers/globalVars'
 
 function Instrument ({ activeScale, activeType, copies }) {
-  const notesWithSharps = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-  const notesWithFlats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
   const activeTonic = activeScale[0]
   const tonicIsFlat = activeTonic[1] === 'b'
   const isMajorFlat = (activeType === 'major' && ['F'].includes(activeTonic))
   const isMinorFlat = (activeType === 'minor' && ['D', 'G', 'C', 'F'].includes(activeTonic))
   const useFlat = tonicIsFlat || isMajorFlat || isMinorFlat
-  const instNotes = useFlat ? notesWithFlats : notesWithSharps
+  const instNotes = useFlat ? GlobalVars.notes.withFlats : GlobalVars.notes.withSharps
 
   return (
     <>
-    {/* <section className="instrument">
+    <section className="instrument">
       {copies.map(copy =>
         <Piano
           activeScale={activeScale}
@@ -22,13 +21,13 @@ function Instrument ({ activeScale, activeType, copies }) {
           key={'piano' + copy}
         />
       )}
-    </section> */}
-    <section className="instrument">
+    </section>
+    {/* <section className="instrument">
       <Guitar
         activeScale={activeScale}
         instNotes={instNotes}
       />
-    </section>
+    </section> */}
 
     </>
   )

@@ -1,9 +1,5 @@
 import React from 'react'
-
-const keys = {
-  major: ['Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#'],
-  minor: ['Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#']
-}
+import GlobalVars from '../helpers/globalVars'
 
 const FifthsButton = ({ keyTonic, keyType, onClick }) => {
   return (
@@ -38,8 +34,8 @@ const FifthsCol = ({ isCurrent, isPrev, isNext, isAlternate, children }) => {
 }
 
 const FifthsRow = ({ rowKeyType, activeKeyType, activeKeyTonic, onClick }) => {
-  const rowKeys = keys[rowKeyType]
-  const activeCol = keys[activeKeyType].indexOf(activeKeyTonic)
+  const rowKeys = GlobalVars.keys[rowKeyType]
+  const activeCol = GlobalVars.keys[activeKeyType].indexOf(activeKeyTonic)
   const lastCol = rowKeys.length - 1
   const prevCol = activeCol === 0 ? lastCol : activeCol - 1
   const nextCol = activeCol === lastCol ? 0 : activeCol + 1

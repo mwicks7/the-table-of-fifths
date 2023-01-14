@@ -15,12 +15,12 @@ function Scale ({ activeKey }) {
         copies={[1, 2, 3]}
       />
       <Notation
-        keyName=''
-        activeScale={activeKey.scale}
-        activeType={activeKey.type}
+        label=''
+        activeKey={activeKey}
+        notes={activeKey.scale}
+        octaves={[1, 2]}
         showIntervals={true}
         showRoot={true}
-        octaves={[1, 2]}
       />
 
     </section>
