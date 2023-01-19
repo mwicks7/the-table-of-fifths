@@ -3,6 +3,7 @@ import '../styles/styles.scss'
 import React from 'react'
 import { Key, Chord } from 'tonal'
 
+import Settings from './Settings.js'
 import FifthsTable from './FifthsTable.js'
 import Scale from './Scale.js'
 import Chords from './Chords.js'
@@ -26,6 +27,10 @@ class App extends React.Component {
       },
       activeChord: {
         notes: chord.notes.slice(0, 3)
+      },
+      settings: {
+        inst: 'piano',
+        showNoteNames: true
       }
     }
   }
@@ -64,19 +69,37 @@ class App extends React.Component {
     })
   }
 
+  handleSettingsChange (e) {
+    const elem = e.target
+    let value = elem.value
+    if (elem.type === 'checkbox') { value = elem.checked }
+
+    this.setState((state) => {
+      const settings = state.settings
+      settings[elem.name] = value
+      return { settings: settings }
+    })
+  }
+
   render () {
     return (
       <div className="page">
+        <Settings
+          settings={this.state.settings}
+          handleSettingsChange={e => this.handleSettingsChange(e)}
+        />
         <FifthsTable
           activeKey={this.state.activeKey}
           onClick={e => this.handleKeyChange(e)}
         />
         <Scale
           activeKey={this.state.activeKey}
+          settings={this.state.settings}
         />
         <Chords
           activeKey={this.state.activeKey}
           chords={this.state.activeKey.chords}
+          settings={this.state.settings}
         />
       </div>
     )

@@ -11,23 +11,12 @@ function ChordSection (props) {
 
   return (
     <section className="chords__chord">
-      {/* <header>
-        <h3>{props.chord}</h3>
-      </header> */}
-
-      {/* <Instrument
-        activeScale={notes}
-        activeType={props.activeKey.type}
-        copies={[1]}
-      /> */}
-
       <Notation
-        label={props.activeKey.intervals[props.i]}
+        label={''}
         activeKey={props.activeKey}
         notes={notes}
         octaves={[1, 2]}
-        showIntervals={false}
-        showRoot={true}
+        showNoteNames={props.showNoteNames}
       />
     </section>
   )
@@ -38,6 +27,7 @@ function Chords (props) {
     <ChordSection
       chord={chord}
       activeKey={props.activeKey}
+      showNoteNames={props.settings.showNoteNames}
       key={'chord' + chord}
       i={i}
     />

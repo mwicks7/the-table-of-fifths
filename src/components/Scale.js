@@ -2,7 +2,7 @@ import React from 'react'
 import Instrument from './Instrument'
 import Notation from './Notation.js'
 
-function Scale ({ activeKey }) {
+function Scale ({ activeKey, settings }) {
   return (
     <section>
       <header>
@@ -13,14 +13,15 @@ function Scale ({ activeKey }) {
         activeScale={activeKey.scale}
         activeType={activeKey.type}
         copies={[1, 2, 3]}
+        instType={settings.inst}
+        showNoteNames={settings.showNoteNames}
       />
       <Notation
         label=''
         activeKey={activeKey}
         notes={activeKey.scale}
         octaves={[1, 2]}
-        showIntervals={true}
-        showRoot={true}
+        showNoteNames={settings.showNoteNames}
       />
 
     </section>
