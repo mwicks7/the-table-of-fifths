@@ -3,7 +3,6 @@ import React from 'react'
 function Settings ({ handleSettingsChange, settings }) {
   return (
     <section className="settings">
-      <h1>Settings</h1>
       <form onInput={handleSettingsChange}>
         <h2>Instrument</h2>
         <div>

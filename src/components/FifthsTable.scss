@@ -1,14 +1,7 @@
 .fifths-table {
   width: 100%;
+  border-top: 1px solid black;
   border-bottom: 1px solid black;
-
-  caption {
-    font-size: $font-lrg;
-    padding: 0.67em;
-    text-align: center;
-    // border-bottom: 2px solid $grey-lightest;
-    border-bottom: 1px solid black;
-  }
 }
 
   .fifths-table__btn {

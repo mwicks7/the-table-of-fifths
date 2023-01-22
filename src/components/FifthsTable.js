@@ -67,7 +67,6 @@ const FifthsRow = ({ rowKeyType, activeKeyType, activeKeyTonic, onClick }) => {
 const FifthsTable = ({ activeKey, onClick }) => {
   return (
     <table className="fifths-table">
-      <caption>The Table of 5ths</caption>
       <tbody>
         <FifthsRow
           rowKeyType="major"

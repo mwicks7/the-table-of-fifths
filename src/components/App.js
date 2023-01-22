@@ -3,7 +3,7 @@ import '../styles/styles.scss'
 import React from 'react'
 import { Key, Chord } from 'tonal'
 
-import Settings from './Settings.js'
+import Menu from './Menu.js'
 import FifthsTable from './FifthsTable.js'
 import Scale from './Scale.js'
 import Chords from './Chords.js'
@@ -71,8 +71,7 @@ class App extends React.Component {
 
   handleSettingsChange (e) {
     const elem = e.target
-    let value = elem.value
-    if (elem.type === 'checkbox') { value = elem.checked }
+    const value = elem.type === 'checkbox' ? elem.checked : elem.value
 
     this.setState((state) => {
       const settings = state.settings
@@ -84,10 +83,14 @@ class App extends React.Component {
   render () {
     return (
       <div className="page">
-        <Settings
-          settings={this.state.settings}
-          handleSettingsChange={e => this.handleSettingsChange(e)}
-        />
+        <header>
+          <h1>The Table of 5ths</h1>
+          <Menu
+            handleSettingsChange={e => this.handleSettingsChange(e)}
+            settings={this.state.settings}
+          />
+        </header>
+
         <FifthsTable
           activeKey={this.state.activeKey}
           onClick={e => this.handleKeyChange(e)}
