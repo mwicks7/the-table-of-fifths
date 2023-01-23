@@ -9,7 +9,7 @@ function Menu ({ handleSettingsChange, settings }) {
   const [showModal, setShowModal] = React.useState(false)
 
   return (
-    <ul className="menu">
+    <menu className="menu">
       <li>
         <button className="menu__button" onClick={() => setShowModal(true)}>
           <img src={settingsIcon} alt="Settings"/>
@@ -30,7 +30,7 @@ function Menu ({ handleSettingsChange, settings }) {
           <img src={printIcon} alt="Print"/>
         </button>
       </li>
-    </ul>
+    </menu>
   )
 }
 

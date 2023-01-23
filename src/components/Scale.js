@@ -5,9 +5,7 @@ import Notation from './Notation.js'
 function Scale ({ activeKey, settings }) {
   return (
     <section>
-      <header>
-        <h1>{activeKey.name}</h1>
-      </header>
+      <h1>{activeKey.name}</h1>
 
       <Instrument
         activeScale={activeKey.scale}
@@ -16,6 +14,7 @@ function Scale ({ activeKey, settings }) {
         instType={settings.inst}
         showNoteNames={settings.showNoteNames}
       />
+
       <Notation
         label=''
         activeKey={activeKey}

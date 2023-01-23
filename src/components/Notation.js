@@ -61,7 +61,7 @@ function Notes ({ activeKey, notes, octaves, showNoteNames }) {
 
 function Notation ({ label, activeKey, notes, octaves, showNoteNames }) {
   return (
-    <div className="notation">
+    <section className="notation">
       <Signature
         sigNotes={activeKey.scale.filter(note => note.length > 1)}
         keyName={label}
@@ -72,7 +72,7 @@ function Notation ({ label, activeKey, notes, octaves, showNoteNames }) {
         octaves={octaves}
         showNoteNames={showNoteNames}
       />
-    </div>
+    </section>
   )
 }
 

@@ -10,15 +10,13 @@ function ChordSection (props) {
   // notes.push([1, 2, 3].map(degrees))
 
   return (
-    <section className="chords__chord">
-      <Notation
-        label={''}
-        activeKey={props.activeKey}
-        notes={notes}
-        octaves={[1, 2]}
-        showNoteNames={props.showNoteNames}
-      />
-    </section>
+    <Notation
+      label={''}
+      activeKey={props.activeKey}
+      notes={notes}
+      octaves={[1, 2]}
+      showNoteNames={props.showNoteNames}
+    />
   )
 }
 
@@ -34,13 +32,9 @@ function Chords (props) {
   )
 
   return (
-    <section className="chords">
-      <header>
-        <h2>Triads</h2>
-      </header>
-      <div className="chords__grid">
-        {chords}
-      </div>
+    <section>
+      <h2>Triads</h2>
+      {chords}
     </section>
   )
 }

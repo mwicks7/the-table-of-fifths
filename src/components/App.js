@@ -62,7 +62,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className="app">
+      <main className="app">
         <header className="app__header">
           <h1>The Table of 5ths</h1>
           <Menu
@@ -84,7 +84,7 @@ class App extends React.Component {
           chords={this.state.activeKey.chords}
           settings={this.state.settings}
         />
-      </div>
+      </main>
     )
   }
 }

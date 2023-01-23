@@ -10,8 +10,8 @@ function Instrument ({ activeScale, activeType, copies, instType, showNoteNames 
   const isMinorFlat = (activeType === 'minor' && ['D', 'G', 'C', 'F'].includes(activeTonic))
   const useFlat = tonicIsFlat || isMajorFlat || isMinorFlat
   const instNotes = useFlat ? GlobalVars.notes.withFlats : GlobalVars.notes.withSharps
-
   let inst
+
   if (instType === 'piano') {
     inst = copies.map(copy =>
       <Piano

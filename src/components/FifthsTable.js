@@ -66,23 +66,25 @@ const FifthsRow = ({ rowKeyType, activeKeyType, activeKeyTonic, onClick }) => {
 
 const FifthsTable = ({ activeKey, onClick }) => {
   return (
-    <table className="fifths-table">
-      <tbody>
-        <FifthsRow
-          rowKeyType="major"
-          activeKeyType={activeKey.type}
-          activeKeyTonic={activeKey.tonic}
-          onClick={onClick}
-        />
+    <nav>
+      <table className="fifths-table">
+        <tbody>
+          <FifthsRow
+            rowKeyType="major"
+            activeKeyType={activeKey.type}
+            activeKeyTonic={activeKey.tonic}
+            onClick={onClick}
+          />
 
-        <FifthsRow
-          rowKeyType="minor"
-          activeKeyType={activeKey.type}
-          activeKeyTonic={activeKey.tonic}
-          onClick={onClick}
-        />
-      </tbody>
-    </table>
+          <FifthsRow
+            rowKeyType="minor"
+            activeKeyType={activeKey.type}
+            activeKeyTonic={activeKey.tonic}
+            onClick={onClick}
+          />
+        </tbody>
+      </table>
+    </nav>
   )
 }
 
