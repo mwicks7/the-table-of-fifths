@@ -22,7 +22,7 @@ function GuitarString ({ frets, activeScale, showNoteNames }) {
     if (activeScale.includes(note)) cssClass += ' guitar__fret--scale'
     if (activeScale.includes(note)) disabled = false
     return (
-      <button disabled={disabled} className={cssClass} key={'fret' + note}>
+      <button disabled={disabled} className={cssClass} key={'fret' + note + i}>
         <span className="guitar__fret-name">{showNoteNames && note}</span>
       </button>
     )
@@ -36,7 +36,7 @@ function GuitarString ({ frets, activeScale, showNoteNames }) {
 function Guitar ({ instNotes, activeScale, showNoteNames }) {
   const stringTuning = ['E', 'B', 'G', 'D', 'A', 'E']
 
-  const guitarStrings = stringTuning.map((tuning) => {
+  const guitarStrings = stringTuning.map((tuning, i) => {
     const tuningIndex = instNotes.indexOf(tuning)
     const frets = instNotes
       .slice(tuningIndex, instNotes.length)
@@ -48,7 +48,7 @@ function Guitar ({ instNotes, activeScale, showNoteNames }) {
         frets={frets}
         activeScale={activeScale}
         showNoteNames={showNoteNames}
-        key={'guitarString' + tuning}
+        key={'guitarString' + tuning + i}
       />
     )
   })
