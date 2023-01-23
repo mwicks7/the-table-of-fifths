@@ -12,9 +12,7 @@ import globalVars from '../helpers/globalVars'
 class App extends React.Component {
   constructor (props) {
     super(props)
-    const keyName = 'C'
-    const keyData = Key.majorKey(keyName)
-    const chord = Chord.get(keyData.triads[0])
+    const keyData = Key.majorKey('C')
 
     this.state = {
       activeKey: {
@@ -24,9 +22,6 @@ class App extends React.Component {
         scale: keyData.scale,
         chords: keyData.triads,
         intervals: globalVars.intervals[keyData.type]
-      },
-      activeChord: {
-        notes: chord.notes.slice(0, 3)
       },
       settings: {
         inst: 'piano',
@@ -41,30 +36,15 @@ class App extends React.Component {
     const newKeyData = newKeyType === 'major'
       ? Key.majorKey(newKeyTonic)
       : Key.minorKey(newKeyTonic).natural
-    const newKeyName = newKeyTonic + ' ' + newKeyType
-    const newChord = Chord.get(newKeyData.triads[0])
 
     this.setState({
       activeKey: {
-        name: newKeyName,
+        name: newKeyData.tonic + ' ' + newKeyType,
         tonic: newKeyData.tonic,
         type: newKeyType,
         scale: newKeyData.scale,
         chords: newKeyData.triads,
         intervals: globalVars.intervals[newKeyType]
-      },
-      activeChord: {
-        notes: newChord.notes.slice(0, 3)
-      }
-    })
-  }
-
-  handleChordChange (e) {
-    const newChord = Chord.get(e.target.dataset.chord)
-
-    this.setState({
-      activeChord: {
-        notes: newChord.notes.slice(0, 3)
       }
     })
   }
@@ -76,14 +56,14 @@ class App extends React.Component {
     this.setState((state) => {
       const settings = state.settings
       settings[elem.name] = value
-      return { settings: settings }
+      return { settings }
     })
   }
 
   render () {
     return (
-      <div className="page">
-        <header>
+      <div className="app">
+        <header className="app__header">
           <h1>The Table of 5ths</h1>
           <Menu
             handleSettingsChange={e => this.handleSettingsChange(e)}

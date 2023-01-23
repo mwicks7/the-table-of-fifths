@@ -26,7 +26,7 @@ function Menu ({ handleSettingsChange, settings }) {
         </Modal>
       </li>
       <li>
-        <button className="menu__button" onClick={window.print}>
+        <button height={24} width={24} className="menu__button" onClick={window.print}>
           <img src={printIcon} alt="Print"/>
         </button>
       </li>

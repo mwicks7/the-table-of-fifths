@@ -1,0 +1,35 @@
+body {
+  font-family: $font-family;
+}
+
+h1, h2 {
+  font-size: $font-lrg;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: $font-med;
+  font-weight: normal;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    padding: 0;
+  }
+}
+
+h1 {
+  text-align: center;
+  font-size: $font-lrg;
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
