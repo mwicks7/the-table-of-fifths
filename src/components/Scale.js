@@ -10,6 +10,7 @@ function Scale ({ activeKey, settings }) {
       <Instrument
         activeScale={activeKey.scale}
         activeType={activeKey.type}
+        instNotes={activeKey.instNotes}
         copies={[1, 2, 3]}
         instType={settings.inst}
         showNoteNames={settings.showNoteNames}

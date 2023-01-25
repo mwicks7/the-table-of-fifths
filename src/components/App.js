@@ -12,22 +12,12 @@ import globalVars from '../helpers/globalVars'
 class App extends React.Component {
   constructor (props) {
     super(props)
-    const keyTonic = 'C'
-    const keyData = Key.majorKey(keyTonic)
 
-    debugger
+    this.handleKeyChange = this.handleKeyChange.bind(this)
+    this.handleSettingsChange = this.handleSettingsChange.bind(this)
+
     this.state = {
-      activeKey: {
-        name: keyData.tonic + ' ' + keyData.type,
-        tonic: keyData.tonic,
-        type: keyData.type,
-        scale: keyData.scale,
-        chords: keyData.triads,
-        fifth: `${keyData.scale[4]} ${keyData.type}`,
-        fourth: `${keyData.scale[3]} ${keyData.type}`,
-        relative: keyData.type === 'major' ? `${Key.majorKey(keyTonic).minorRelative} minor` : `${Key.minorKey(keyTonic).relativeMajor} major`,
-        intervals: globalVars.intervals[keyData.type]
-      },
+      activeKey: this.buildActiveKeyObj('C', 'major'),
       settings: {
         inst: 'piano',
         showNoteNames: true
@@ -35,25 +25,37 @@ class App extends React.Component {
     }
   }
 
-  handleKeyChange (e) {
-    const newKeyTonic = e.target.dataset.keyTonic
-    const newKeyType = e.target.dataset.keyType
-    const newKeyData = newKeyType === 'major'
-      ? Key.majorKey(newKeyTonic)
-      : Key.minorKey(newKeyTonic).natural
+  buildActiveKeyObj (keyTonic, keyType) {
+    const keyData = keyType === 'major'
+      ? Key.majorKey(keyTonic)
+      : Key.minorKey(keyTonic).natural
 
+    return {
+      name: `${keyData.tonic} ${keyType}`,
+      tonic: keyData.tonic,
+      type: keyType,
+      scale: keyData.scale,
+      chords: keyData.triads,
+      fifth: `${keyData.scale[4]} ${keyType}`,
+      fourth: `${keyData.scale[3]} ${keyType}`,
+      relative: keyType === 'major' ? `${Key.majorKey(keyTonic).minorRelative} minor` : `${Key.minorKey(keyTonic).relativeMajor} major`,
+      intervals: globalVars.intervals[keyType],
+      instNotes: this.getInstrumentNotes(keyTonic, keyData.type)
+    }
+  }
+
+  getInstrumentNotes (activeTonic, activeType) {
+    const tonicIsFlat = activeTonic[1] === 'b'
+    const isMajorFlat = (activeType === 'major' && ['F'].includes(activeTonic))
+    const isMinorFlat = (activeType === 'minor' && ['D', 'G', 'C', 'F'].includes(activeTonic))
+    const useFlat = tonicIsFlat || isMajorFlat || isMinorFlat
+
+    return useFlat ? globalVars.notes.withFlats : globalVars.notes.withSharps
+  }
+
+  handleKeyChange (e) {
     this.setState({
-      activeKey: {
-        name: `${newKeyData.tonic} ${newKeyType}`,
-        tonic: newKeyData.tonic,
-        type: newKeyType,
-        scale: newKeyData.scale,
-        chords: newKeyData.triads,
-        fifth: `${newKeyData.scale[4]} ${newKeyType}`,
-        fourth: `${newKeyData.scale[3]} ${newKeyType}`,
-        relative: newKeyType === 'major' ? `${Key.majorKey(newKeyTonic).minorRelative} minor` : `${Key.minorKey(newKeyTonic).relativeMajor} major`,
-        intervals: globalVars.intervals[newKeyType]
-      }
+      activeKey: this.buildActiveKeyObj(e.target.dataset.keyTonic, e.target.dataset.keyType)
     })
   }
 
