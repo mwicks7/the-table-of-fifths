@@ -1,59 +1,43 @@
 import React from 'react'
 import GlobalVars from '../helpers/globalVars'
 
-const FifthsButton = ({ keyTonic, keyType, onClick }) => {
-  return (
-    <button
-      className="fifths-table__btn"
-      data-key-tonic={keyTonic}
-      data-key-type={keyType}
-      onClick={onClick}
-    >
-      {keyTonic}
-    </button>
-  )
-}
-
-const FifthsCol = ({ isCurrent, isPrev, isNext, isAlternate, children }) => {
+const FifthsCol = ({ keyTonic, keyType, activeKey, onClick }) => {
+  const keyName = `${keyTonic} ${keyType}`
   let cssClass
-  if (isCurrent) {
+
+  if (keyName === activeKey.name) {
     cssClass = 'is--current'
-  } else if (isPrev) {
+  } else if (keyName === activeKey.fourth) {
     cssClass = 'is--prev'
-  } else if (isNext) {
+  } else if (keyName === activeKey.fifth) {
     cssClass = 'is--next'
-  } else if (isAlternate) {
-    cssClass = 'is--alternate'
+  } else if (keyName === activeKey.relative) {
+    cssClass = 'is--relative'
   }
 
   return (
     <td className={cssClass}>
-      {children}
+      <button
+      className="fifths-table__btn"
+      data-key-tonic={keyTonic}
+      data-key-type={keyType}
+      onClick={onClick}
+      >
+        {keyTonic}
+      </button>
     </td>
   )
 }
 
-const FifthsRow = ({ rowKeyType, activeKeyType, activeKeyTonic, onClick }) => {
-  const rowKeys = GlobalVars.keys[rowKeyType]
-  const activeCol = GlobalVars.keys[activeKeyType].indexOf(activeKeyTonic)
-  const lastCol = rowKeys.length - 1
-  const prevCol = activeCol === 0 ? lastCol : activeCol - 1
-  const nextCol = activeCol === lastCol ? 0 : activeCol + 1
-  const isSameType = activeKeyType === rowKeyType
+const FifthsRow = ({ rowKeyType, activeKey, rowKeys, onClick }) => {
   const columns = rowKeys.map((keyTonic, i) =>
     <FifthsCol
-      key={rowKeyType + keyTonic}
-      isCurrent={isSameType && activeKeyTonic === keyTonic}
-      isAlternate={!isSameType && i === activeCol}
-      isPrev={isSameType && i === prevCol}
-      isNext={isSameType && i === nextCol}
-    >
-      <FifthsButton
-        keyTonic={keyTonic}
-        keyType={rowKeyType}
-        onClick={onClick}
-      />
-    </FifthsCol>
+      keyTonic={keyTonic}
+      keyType={rowKeyType}
+      activeKey={activeKey}
+      onClick={onClick}
+      key={`${i}${keyTonic}${rowKeyType}`}
+    />
   )
 
   return (
@@ -71,15 +55,15 @@ const FifthsTable = ({ activeKey, onClick }) => {
         <tbody>
           <FifthsRow
             rowKeyType="major"
-            activeKeyType={activeKey.type}
-            activeKeyTonic={activeKey.tonic}
+            activeKey={activeKey}
+            rowKeys={GlobalVars.keys.major}
             onClick={onClick}
           />
 
           <FifthsRow
             rowKeyType="minor"
-            activeKeyType={activeKey.type}
-            activeKeyTonic={activeKey.tonic}
+            activeKey={activeKey}
+            rowKeys={GlobalVars.keys.minor}
             onClick={onClick}
           />
         </tbody>

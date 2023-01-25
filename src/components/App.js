@@ -1,7 +1,7 @@
 import '../styles/styles.scss'
 
 import React from 'react'
-import { Key, Chord } from 'tonal'
+import { Key } from 'tonal'
 
 import Menu from './Menu.js'
 import FifthsTable from './FifthsTable.js'
@@ -12,8 +12,10 @@ import globalVars from '../helpers/globalVars'
 class App extends React.Component {
   constructor (props) {
     super(props)
-    const keyData = Key.majorKey('C')
+    const keyTonic = 'C'
+    const keyData = Key.majorKey(keyTonic)
 
+    debugger
     this.state = {
       activeKey: {
         name: keyData.tonic + ' ' + keyData.type,
@@ -21,6 +23,9 @@ class App extends React.Component {
         type: keyData.type,
         scale: keyData.scale,
         chords: keyData.triads,
+        fifth: `${keyData.scale[4]} ${keyData.type}`,
+        fourth: `${keyData.scale[3]} ${keyData.type}`,
+        relative: keyData.type === 'major' ? `${Key.majorKey(keyTonic).minorRelative} minor` : `${Key.minorKey(keyTonic).relativeMajor} major`,
         intervals: globalVars.intervals[keyData.type]
       },
       settings: {
@@ -39,11 +44,14 @@ class App extends React.Component {
 
     this.setState({
       activeKey: {
-        name: newKeyData.tonic + ' ' + newKeyType,
+        name: `${newKeyData.tonic} ${newKeyType}`,
         tonic: newKeyData.tonic,
         type: newKeyType,
         scale: newKeyData.scale,
         chords: newKeyData.triads,
+        fifth: `${newKeyData.scale[4]} ${newKeyType}`,
+        fourth: `${newKeyData.scale[3]} ${newKeyType}`,
+        relative: newKeyType === 'major' ? `${Key.majorKey(newKeyTonic).minorRelative} minor` : `${Key.minorKey(newKeyTonic).relativeMajor} major`,
         intervals: globalVars.intervals[newKeyType]
       }
     })
