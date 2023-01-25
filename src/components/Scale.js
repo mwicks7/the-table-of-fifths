@@ -8,8 +8,7 @@ function Scale ({ activeKey, settings }) {
       <h1>{activeKey.name}</h1>
 
       <Instrument
-        activeScale={activeKey.scale}
-        activeType={activeKey.type}
+        activeNotes={activeKey.scale}
         instNotes={activeKey.instNotes}
         copies={[1, 2, 3]}
         instType={settings.inst}
