@@ -6,27 +6,6 @@ import GlobalVars from '../helpers/globalVars'
 import React from 'react'
 
 const staffSpaces = ['G3', 'F3', 'E3', 'D3', 'C3', 'B3', 'A3', 'G2', 'F2', 'E2', 'D2', 'C2', 'B2', 'A2', 'G1', 'F1', 'E1', 'D1', 'C1', 'B1', 'A1']
-const sharpsOrder = ['F', 'C', 'G', 'D', 'A', 'E']
-const flatsOrder = ['B', 'E', 'A', 'D', 'G']
-
-function symbolToText (text) {
-  if (text === '#') {
-    return text.replace('#', 'sharp')
-  } else if (text === 'b') {
-    return text.replace('b', 'flat')
-  } else {
-    return text
-  }
-}
-
-function sortSignature (noteA, noteB) {
-  const order = noteA.charAt(1) === '#' ? sharpsOrder : flatsOrder
-  return order.indexOf(noteA.charAt(0)) - order.indexOf(noteB.charAt(0))
-}
-
-function getSignatureType (signature) {
-  return signature.length > 0 ? symbolToText(signature[0].charAt(1)) : ''
-}
 
 function convertSigToPos (sig) {
   const tonic = sig.charAt(0)
@@ -106,14 +85,13 @@ function StaffSpace (props) {
 }
 
 function Staff (props) {
-  const sigType = getSignatureType(props.signature)
-  const sigPositions = props.signature.sort(sortSignature).map(sig => convertSigToPos(sig))
+  const sigPositions = props.signature.sigNotes.map(sig => convertSigToPos(sig))
   const notePositions = convertNotesToPos(props.notes, props.octave)
 
   const staff = staffSpaces.map(staffPos =>
     <StaffSpace
       staffPos={staffPos}
-      sigType={sigType}
+      sigType={props.signature.sigType}
       sigPositions={sigPositions}
       notePositions={notePositions}
       key={'StaffSpace' + staffPos}

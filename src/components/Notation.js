@@ -2,25 +2,16 @@ import React, { Fragment } from 'react'
 import Staff from './Staff.js'
 import GlobalVars from '../helpers/globalVars'
 
-function Signature ({ sigNotes, keyName }) {
+function Signature ({ signature }) {
   return (
     <div className="notation__signature">
-      <Name note={keyName}/>
       <Staff
-        signature={sigNotes}
+        signature={signature}
         showClef={true}
         notes={[]}
       />
     </div>
   )
-}
-
-function Interval ({ interval }) {
-  return <div className="notation__interval">{interval}</div>
-}
-
-function Name ({ note }) {
-  return <div className="notation__name">{note}</div>
 }
 
 function Notes ({ activeKey, notes, octaves, showNoteNames }) {
@@ -38,11 +29,11 @@ function Notes ({ activeKey, notes, octaves, showNoteNames }) {
 
       return (
         <div key={'staff' + note} className="notation__note">
-          {(showNoteNames && octave === 1) && <Interval interval={interval}/>}
-          {(showNoteNames && octave === 1) && <Name note={note}/>}
+          {(showNoteNames && octave === 1) && <div className="notation__interval">{interval}</div>}
+          {(showNoteNames && octave === 1) && <div className="notation__name">{note}</div>}
           <Staff
             notes={noteStack}
-            signature={[]}
+            signature={{ sigNotes: [], sigType: '' }}
             showClef={false}
             octave={incrementalOctave}
             key={'notationNotes' + note}
@@ -59,12 +50,11 @@ function Notes ({ activeKey, notes, octaves, showNoteNames }) {
   )
 }
 
-function Notation ({ label, activeKey, notes, octaves, showNoteNames }) {
+function Notation ({ activeKey, notes, octaves, showNoteNames }) {
   return (
     <section className="notation">
       <Signature
-        sigNotes={activeKey.scale.filter(note => note.length > 1)}
-        keyName={label}
+        signature={activeKey.signature}
       />
       <Notes
         activeKey={activeKey}

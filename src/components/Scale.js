@@ -16,13 +16,11 @@ function Scale ({ activeKey, settings }) {
       />
 
       <Notation
-        label=''
         activeKey={activeKey}
         notes={activeKey.scale}
         octaves={[1, 2]}
         showNoteNames={settings.showNoteNames}
       />
-
     </section>
   )
 }

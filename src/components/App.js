@@ -25,34 +25,6 @@ class App extends React.Component {
     }
   }
 
-  buildActiveKeyObj (keyTonic, keyType) {
-    const keyData = keyType === 'major'
-      ? Key.majorKey(keyTonic)
-      : Key.minorKey(keyTonic).natural
-
-    return {
-      name: `${keyData.tonic} ${keyType}`,
-      tonic: keyData.tonic,
-      type: keyType,
-      scale: keyData.scale,
-      chords: keyData.triads,
-      fifth: `${keyData.scale[4]} ${keyType}`,
-      fourth: `${keyData.scale[3]} ${keyType}`,
-      relative: keyType === 'major' ? `${Key.majorKey(keyTonic).minorRelative} minor` : `${Key.minorKey(keyTonic).relativeMajor} major`,
-      intervals: globalVars.intervals[keyType],
-      instNotes: this.getInstrumentNotes(keyTonic, keyData.type)
-    }
-  }
-
-  getInstrumentNotes (activeTonic, activeType) {
-    const tonicIsFlat = activeTonic[1] === 'b'
-    const isMajorFlat = (activeType === 'major' && ['F'].includes(activeTonic))
-    const isMinorFlat = (activeType === 'minor' && ['D', 'G', 'C', 'F'].includes(activeTonic))
-    const useFlat = tonicIsFlat || isMajorFlat || isMinorFlat
-
-    return useFlat ? globalVars.notes.withFlats : globalVars.notes.withSharps
-  }
-
   handleKeyChange (e) {
     this.setState({
       activeKey: this.buildActiveKeyObj(e.target.dataset.keyTonic, e.target.dataset.keyType)
@@ -70,20 +42,62 @@ class App extends React.Component {
     })
   }
 
+  buildActiveKeyObj (keyTonic, keyType) {
+    const keyData = keyType === 'major'
+      ? Key.majorKey(keyTonic)
+      : Key.minorKey(keyTonic).natural
+
+    return {
+      name: `${keyData.tonic} ${keyType}`,
+      tonic: keyData.tonic,
+      type: keyType,
+      scale: keyData.scale,
+      chords: keyData.triads,
+      fifth: `${keyData.scale[4]} ${keyType}`,
+      fourth: `${keyData.scale[3]} ${keyType}`,
+      relative: keyType === 'major' ? `${Key.majorKey(keyTonic).minorRelative} minor` : `${Key.minorKey(keyTonic).relativeMajor} major`,
+      intervals: globalVars.intervals[keyType],
+      signature: this.getSignature(keyData.scale),
+      instNotes: this.getInstrumentNotes(keyTonic, keyData.type)
+    }
+  }
+
+  getSignature (keyNotes) {
+    const sigNotes = keyNotes.filter(note => note.length > 1)
+    let sigType = ''
+
+    if (sigNotes.length > 0) {
+      sigType = sigNotes[0].charAt(1) === '#' ? 'sharp' : 'flat'
+      const order = sigType === 'sharp' ? ['F', 'C', 'G', 'D', 'A', 'E'] : ['B', 'E', 'A', 'D', 'G']
+      sigNotes.sort((noteA, noteB) => order.indexOf(noteA.charAt(0)) - order.indexOf(noteB.charAt(0)))
+    }
+
+    return { sigNotes, sigType }
+  }
+
+  getInstrumentNotes (activeTonic, activeType) {
+    const tonicIsFlat = activeTonic[1] === 'b'
+    const isMajorFlat = (activeType === 'major' && ['F'].includes(activeTonic))
+    const isMinorFlat = (activeType === 'minor' && ['D', 'G', 'C', 'F'].includes(activeTonic))
+    const useFlat = tonicIsFlat || isMajorFlat || isMinorFlat
+
+    return useFlat ? globalVars.notes.withFlats : globalVars.notes.withSharps
+  }
+
   render () {
     return (
       <main className="app">
         <header className="app__header">
           <h1>The Table of 5ths</h1>
           <Menu
-            handleSettingsChange={e => this.handleSettingsChange(e)}
+            handleSettingsChange={this.handleSettingsChange}
             settings={this.state.settings}
           />
         </header>
 
         <FifthsTable
           activeKey={this.state.activeKey}
-          onClick={e => this.handleKeyChange(e)}
+          onClick={this.handleKeyChange}
         />
         <Scale
           activeKey={this.state.activeKey}
