@@ -9,7 +9,7 @@ function PianoKey ({ note, activeNotes, hideNoteNames }) {
   if (activeNotes.includes(note)) cssClass += ' piano__key--scale'
   if (activeNotes.includes(note)) disabled = false
   return (
-    <button disabled={disabled} className={cssClass} >
+    <button disabled={disabled} className={cssClass} aria-label={note}>
       <span className="piano__key-name">{!hideNoteNames && note}</span>
     </button>
   )

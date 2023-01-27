@@ -22,7 +22,7 @@ function GuitarString ({ frets, activeNotes, hideNoteNames }) {
     if (activeNotes.includes(note)) cssClass += ' guitar__fret--scale'
     if (activeNotes.includes(note)) disabled = false
     return (
-      <button disabled={disabled} className={cssClass} key={'fret' + note + i}>
+      <button disabled={disabled} className={cssClass} aria-label={note} key={'fret' + note + i}>
         <span className="guitar__fret-name">{!hideNoteNames && note}</span>
       </button>
     )
