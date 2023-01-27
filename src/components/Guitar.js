@@ -12,7 +12,7 @@ function FretMarkers () {
   )
 }
 
-function GuitarString ({ frets, activeNotes, showNoteNames }) {
+function GuitarString ({ frets, activeNotes, hideNoteNames }) {
   const notes = frets.map((note, i) => {
     let cssClass = 'guitar__fret'
     let disabled = true
@@ -23,7 +23,7 @@ function GuitarString ({ frets, activeNotes, showNoteNames }) {
     if (activeNotes.includes(note)) disabled = false
     return (
       <button disabled={disabled} className={cssClass} key={'fret' + note + i}>
-        <span className="guitar__fret-name">{showNoteNames && note}</span>
+        <span className="guitar__fret-name">{!hideNoteNames && note}</span>
       </button>
     )
   })
@@ -33,7 +33,7 @@ function GuitarString ({ frets, activeNotes, showNoteNames }) {
   )
 }
 
-function Guitar ({ instNotes, activeNotes, showNoteNames }) {
+function Guitar ({ instNotes, activeNotes, hideNoteNames }) {
   const stringTuning = ['E', 'B', 'G', 'D', 'A', 'E']
 
   const guitarStrings = stringTuning.map((tuning, i) => {
@@ -47,7 +47,7 @@ function Guitar ({ instNotes, activeNotes, showNoteNames }) {
       <GuitarString
         frets={frets}
         activeNotes={activeNotes}
-        showNoteNames={showNoteNames}
+        hideNoteNames={hideNoteNames}
         key={'guitarString' + tuning + i}
       />
     )

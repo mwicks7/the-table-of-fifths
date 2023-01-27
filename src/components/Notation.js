@@ -14,7 +14,7 @@ function Signature ({ signature }) {
   )
 }
 
-function Notes ({ activeKey, notes, octaves, showNoteNames }) {
+function Notes ({ activeKey, notes, octaves, hideNoteNames }) {
   const noteGroups = octaves.map((octave) => {
     let incrementalOctave = octave
     let prevNote
@@ -29,8 +29,8 @@ function Notes ({ activeKey, notes, octaves, showNoteNames }) {
 
       return (
         <div key={'staff' + note} className="notation__note">
-          {(showNoteNames && octave === 1) && <div className="notation__interval">{interval}</div>}
-          {(showNoteNames && octave === 1) && <div className="notation__name">{note}</div>}
+          {(!hideNoteNames && octave === 1) && <div className="notation__interval">{interval}</div>}
+          {(!hideNoteNames && octave === 1) && <div className="notation__name">{note}</div>}
           <Staff
             notes={noteStack}
             signature={{ sigNotes: [], sigType: '' }}
@@ -50,7 +50,7 @@ function Notes ({ activeKey, notes, octaves, showNoteNames }) {
   )
 }
 
-function Notation ({ activeKey, notes, octaves, showNoteNames }) {
+function Notation ({ activeKey, notes, octaves, hideNoteNames }) {
   return (
     <section className="notation">
       <Signature
@@ -60,7 +60,7 @@ function Notation ({ activeKey, notes, octaves, showNoteNames }) {
         activeKey={activeKey}
         notes={notes}
         octaves={octaves}
-        showNoteNames={showNoteNames}
+        hideNoteNames={hideNoteNames}
       />
     </section>
   )

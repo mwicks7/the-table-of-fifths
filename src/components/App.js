@@ -20,7 +20,7 @@ class App extends React.Component {
       activeKey: this.buildActiveKeyObj('C', 'major'),
       settings: {
         inst: 'piano',
-        showNoteNames: true
+        hideNoteNames: false
       }
     }
   }

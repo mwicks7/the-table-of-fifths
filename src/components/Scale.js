@@ -12,14 +12,14 @@ function Scale ({ activeKey, settings }) {
         instNotes={activeKey.instNotes}
         copies={[1, 2, 3]}
         instType={settings.inst}
-        showNoteNames={settings.showNoteNames}
+        hideNoteNames={settings.hideNoteNames}
       />
 
       <Notation
         activeKey={activeKey}
         notes={activeKey.scale}
         octaves={[1, 2]}
-        showNoteNames={settings.showNoteNames}
+        hideNoteNames={settings.hideNoteNames}
       />
     </section>
   )

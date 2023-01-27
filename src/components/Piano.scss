@@ -49,6 +49,6 @@
       bottom: 10px;
       
       .piano__key:disabled & {
-        display: none;
+        visibility: hidden;
       }
     }

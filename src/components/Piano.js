@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PianoKey ({ note, activeNotes, showNoteNames }) {
+function PianoKey ({ note, activeNotes, hideNoteNames }) {
   let cssClass = 'piano__key'
   let disabled = true
   if (note.length > 1) cssClass += ' piano__key--black'
@@ -10,17 +10,17 @@ function PianoKey ({ note, activeNotes, showNoteNames }) {
   if (activeNotes.includes(note)) disabled = false
   return (
     <button disabled={disabled} className={cssClass} >
-      <span className="piano__key-name">{showNoteNames && note}</span>
+      <span className="piano__key-name">{!hideNoteNames && note}</span>
     </button>
   )
 }
 
-function Piano ({ instNotes, activeNotes, showNoteNames }) {
+function Piano ({ instNotes, activeNotes, hideNoteNames }) {
   const pianoKeys = instNotes.map(note =>
     <PianoKey
       note={note}
       activeNotes={activeNotes}
-      showNoteNames={showNoteNames}
+      hideNoteNames={hideNoteNames}
       key={'pianokey' + note}
     />
   )

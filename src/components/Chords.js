@@ -11,7 +11,7 @@ function Chords (props) {
           activeKey={props.activeKey}
           notes={Chord.get(chord).notes}
           octaves={[1, 2]}
-          showNoteNames={props.settings.showNoteNames}
+          hideNoteNames={props.settings.hideNoteNames}
           key={'chord' + chord}
         />
       )}

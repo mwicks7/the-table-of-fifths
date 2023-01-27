@@ -14,6 +14,7 @@ function Menu ({ handleSettingsChange, settings }) {
         <button className="menu__button" onClick={() => setShowModal(true)}>
           <img src={settingsIcon} alt="Settings"/>
         </button>
+
         <Modal
           show={showModal}
           setShow={setShowModal}
