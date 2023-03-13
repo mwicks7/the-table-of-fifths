@@ -5,7 +5,7 @@ import Settings from './Settings.js'
 import settingsIcon from '../images/settings.svg'
 import printIcon from '../images/printer.svg'
 
-function Menu ({ handleSettingsChange, settings }) {
+const Menu = ({ handleSettingsChange, settings }) => {
   const [showModal, setShowModal] = React.useState(false)
 
   return (

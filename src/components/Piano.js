@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PianoKey ({ note, activeNotes, hideNoteNames }) {
+const PianoKey = ({ note, activeNotes, hideNoteNames }) => {
   let cssClass = 'piano__key'
   let disabled = true
   if (note.length > 1) cssClass += ' piano__key--black'
@@ -15,7 +15,7 @@ function PianoKey ({ note, activeNotes, hideNoteNames }) {
   )
 }
 
-function Piano ({ instNotes, activeNotes, hideNoteNames }) {
+const Piano = ({ instNotes, activeNotes, hideNoteNames }) => {
   const pianoKeys = instNotes.map(note =>
     <PianoKey
       note={note}

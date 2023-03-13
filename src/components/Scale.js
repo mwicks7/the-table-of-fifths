@@ -2,7 +2,7 @@ import React from 'react'
 import Instrument from './Instrument'
 import Notation from './Notation.js'
 
-function Scale ({ activeKey, settings }) {
+const Scale = ({ activeKey, settings }) => {
   return (
     <section>
       <h1>{activeKey.name}</h1>

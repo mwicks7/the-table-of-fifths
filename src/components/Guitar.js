@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FretMarkers () {
+const FretMarkers = () => {
   const frets = [...Array(13)].map((_, i) => {
     return <div key={'fretMarker' + i} className="guitar__fret-marker"></div>
   })
@@ -12,7 +12,7 @@ function FretMarkers () {
   )
 }
 
-function GuitarString ({ frets, activeNotes, hideNoteNames }) {
+const GuitarString = ({ frets, activeNotes, hideNoteNames }) => {
   const notes = frets.map((note, i) => {
     let cssClass = 'guitar__fret'
     let disabled = true
@@ -33,7 +33,7 @@ function GuitarString ({ frets, activeNotes, hideNoteNames }) {
   )
 }
 
-function Guitar ({ instNotes, activeNotes, hideNoteNames }) {
+const Guitar = ({ instNotes, activeNotes, hideNoteNames }) => {
   const stringTuning = ['E', 'B', 'G', 'D', 'A', 'E']
 
   const guitarStrings = stringTuning.map((tuning, i) => {

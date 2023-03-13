@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Settings ({ handleSettingsChange, settings }) {
+const Settings = ({ handleSettingsChange, settings }) => {
   return (
     <section className="settings">
       <form onInput={handleSettingsChange}>

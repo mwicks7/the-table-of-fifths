@@ -27,7 +27,7 @@ function convertNotesToPos (notes, octave) {
   return notePositions
 }
 
-function ClefSymbol () {
+const ClefSymbol = () => {
   return (
     <div className="staff__clef is--treble">
       <img src={trebleClef} alt="Treble Clef"/>
@@ -35,16 +35,16 @@ function ClefSymbol () {
   )
 }
 
-function SignatureSymbol (props) {
-  const sym = props.sigType === 'sharp' ? sharpSym : flatSym
+const SignatureSymbol = ({ sigIndex, sigType }) => {
+  const sym = sigType === 'sharp' ? sharpSym : flatSym
   return (
-    <div className={'staff__sig is--' + props.sigIndex + ' is--' + props.sigType} >
-    <img src={sym} alt={props.sigType}/>
+    <div className={'staff__sig is--' + sigIndex + ' is--' + sigType} >
+    <img src={sym} alt={sigType}/>
     </div>
   )
 }
 
-function NoteSymbol (props) {
+const NoteSymbol = () => {
   return (
     <div className="staff__note" >
       <img src={wholeNote} alt="Whole notes" />
@@ -52,7 +52,7 @@ function NoteSymbol (props) {
   )
 }
 
-function StaffSpace (props) {
+const StaffSpace = (props) => {
   let signatureSymbol
   let noteSymbol
   const showSignature = props.sigPositions.length > 0 && props.sigPositions.includes(props.staffPos)
@@ -84,7 +84,7 @@ function StaffSpace (props) {
   )
 }
 
-function Staff (props) {
+const Staff = (props) => {
   const sigPositions = props.signature.sigNotes.map(sig => convertSigToPos(sig))
   const notePositions = convertNotesToPos(props.notes, props.octave)
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Piano from './Piano.js'
 import Guitar from './Guitar.js'
 
-function Instrument ({ activeNotes, instNotes, copies, instType, hideNoteNames }) {
+const Instrument = ({ activeNotes, instNotes, copies, instType, hideNoteNames }) => {
   let inst
 
   if (instType === 'piano') {

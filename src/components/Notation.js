@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Staff from './Staff.js'
 import GlobalVars from '../helpers/globalVars'
 
-function Signature ({ signature }) {
+const Signature = ({ signature }) => {
   return (
     <div className="notation__signature">
       <Staff
@@ -14,7 +14,7 @@ function Signature ({ signature }) {
   )
 }
 
-function Notes ({ activeKey, notes, octaves, hideNoteNames }) {
+const Notes = ({ activeKey, notes, octaves, hideNoteNames }) => {
   const noteGroups = octaves.map((octave) => {
     let incrementalOctave = octave
     let prevNote
@@ -50,7 +50,7 @@ function Notes ({ activeKey, notes, octaves, hideNoteNames }) {
   )
 }
 
-function Notation ({ activeKey, notes, octaves, hideNoteNames }) {
+const Notation = ({ activeKey, notes, octaves, hideNoteNames }) => {
   return (
     <section className="notation">
       <Signature
