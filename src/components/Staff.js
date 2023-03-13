@@ -52,18 +52,18 @@ const NoteSymbol = () => {
   )
 }
 
-const StaffSpace = (props) => {
+const StaffSpace = ({ staffPos, sigType, sigPositions, notePositions }) => {
   let signatureSymbol
   let noteSymbol
-  const showSignature = props.sigPositions.length > 0 && props.sigPositions.includes(props.staffPos)
-  const showNote = props.notePositions.length > 0 && props.notePositions.includes(props.staffPos)
+  const showSignature = sigPositions.length > 0 && sigPositions.includes(staffPos)
+  const showNote = notePositions.length > 0 && notePositions.includes(staffPos)
 
   if (showSignature) {
     signatureSymbol = (
       <SignatureSymbol
-        key={'staffSignature' + props.staffPos}
-        sigIndex={props.sigPositions.indexOf(props.staffPos)}
-        sigType={props.sigType}
+        key={'staffSignature' + staffPos}
+        sigIndex={sigPositions.indexOf(staffPos)}
+        sigType={sigType}
       />
     )
   }
@@ -71,27 +71,27 @@ const StaffSpace = (props) => {
   if (showNote) {
     noteSymbol = (
       <NoteSymbol
-        key={'staffNote' + props.staffPos}
+        key={'staffNote' + staffPos}
       />
     )
   }
 
   return (
-    <div className={'staff__space for--' + props.staffPos}>
+    <div className={'staff__space for--' + staffPos}>
       {signatureSymbol}
       {noteSymbol}
     </div>
   )
 }
 
-const Staff = (props) => {
-  const sigPositions = props.signature.sigNotes.map(sig => convertSigToPos(sig))
-  const notePositions = convertNotesToPos(props.notes, props.octave)
+const Staff = ({ signature, notes, octave = 1, showClef = false }) => {
+  const sigPositions = signature.sigNotes.map(sig => convertSigToPos(sig))
+  const notePositions = convertNotesToPos(notes, octave)
 
   const staff = staffSpaces.map(staffPos =>
     <StaffSpace
       staffPos={staffPos}
-      sigType={props.signature.sigType}
+      sigType={signature.sigType}
       sigPositions={sigPositions}
       notePositions={notePositions}
       key={'StaffSpace' + staffPos}
@@ -100,7 +100,7 @@ const Staff = (props) => {
 
   return (
     <div className="staff">
-      {props.showClef && <ClefSymbol />}
+      {showClef && <ClefSymbol />}
       {staff}
     </div>
   )
