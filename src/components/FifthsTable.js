@@ -30,20 +30,18 @@ const FifthsCol = ({ keyTonic, keyType, activeKey, onClick }) => {
 }
 
 const FifthsRow = ({ rowKeyType, activeKey, rowKeys, onClick }) => {
-  const columns = rowKeys.map((keyTonic, i) =>
-    <FifthsCol
-      keyTonic={keyTonic}
-      keyType={rowKeyType}
-      activeKey={activeKey}
-      onClick={onClick}
-      key={`${i}${keyTonic}${rowKeyType}`}
-    />
-  )
-
   return (
     <tr>
       <th scope="row">{rowKeyType + ':'}</th>
-      {columns}
+      {rowKeys.map((keyTonic, i) =>
+        <FifthsCol
+          keyTonic={keyTonic}
+          keyType={rowKeyType}
+          activeKey={activeKey}
+          onClick={onClick}
+          key={`${i}${keyTonic}${rowKeyType}`}
+        />
+      )}
     </tr>
   )
 }

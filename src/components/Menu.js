@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from './Modal'
-import Settings from './Settings.js'
+import Settings from './Settings'
 
 import settingsIcon from '../images/settings.svg'
 import printIcon from '../images/printer.svg'

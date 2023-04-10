@@ -2,11 +2,10 @@ import '../styles/styles.scss'
 
 import React from 'react'
 import { Key } from 'tonal'
-
-import Menu from './Menu.js'
-import FifthsTable from './FifthsTable.js'
-import Scale from './Scale.js'
-import Chords from './Chords.js'
+import Menu from './Menu'
+import FifthsTable from './FifthsTable'
+import Scale from './Scale'
+import Chords from './Chords'
 import globalVars from '../helpers/globalVars'
 
 class App extends React.Component {
@@ -25,22 +24,7 @@ class App extends React.Component {
     }
   }
 
-  handleKeyChange (e) {
-    this.setState({
-      activeKey: this.buildActiveKeyObj(e.target.dataset.keyTonic, e.target.dataset.keyType)
-    })
-  }
-
-  handleSettingsChange (e) {
-    const elem = e.target
-    const value = elem.type === 'checkbox' ? elem.checked : elem.value
-
-    this.setState((state) => {
-      const settings = state.settings
-      settings[elem.name] = value
-      return { settings }
-    })
-  }
+  // DATA PREP
 
   buildActiveKeyObj (keyTonic, keyType) {
     const keyData = keyType === 'major'
@@ -84,6 +68,27 @@ class App extends React.Component {
     return useFlat ? globalVars.notes.withFlats : globalVars.notes.withSharps
   }
 
+  // EVENT HANDLERS
+
+  handleKeyChange (e) {
+    this.setState({
+      activeKey: this.buildActiveKeyObj(e.target.dataset.keyTonic, e.target.dataset.keyType)
+    })
+  }
+
+  handleSettingsChange (e) {
+    const elem = e.target
+    const value = elem.type === 'checkbox' ? elem.checked : elem.value
+
+    this.setState((state) => {
+      const settings = state.settings
+      settings[elem.name] = value
+      return { settings }
+    })
+  }
+
+  // COMPONENT RENDER
+
   render () {
     return (
       <main className="app">
@@ -99,10 +104,12 @@ class App extends React.Component {
           activeKey={this.state.activeKey}
           onClick={this.handleKeyChange}
         />
+
         <Scale
           activeKey={this.state.activeKey}
           settings={this.state.settings}
         />
+
         <Chords
           activeKey={this.state.activeKey}
           chords={this.state.activeKey.chords}
