@@ -29,8 +29,8 @@ const Notes = ({ activeKey, notes, octaves, hideNoteNames }) => {
 
       return (
         <div key={'staff' + note} className="notation__note">
-          {(!hideNoteNames && octave === 1) && <div className="notation__interval">{interval}</div>}
-          {(!hideNoteNames && octave === 1) && <div className="notation__name">{note}</div>}
+          {!hideNoteNames && <div className="notation__interval">{interval}</div>}
+          {!hideNoteNames && <div className="notation__name">{note}</div>}
           <Staff
             notes={noteStack}
             signature={{ sigNotes: [], sigType: '' }}

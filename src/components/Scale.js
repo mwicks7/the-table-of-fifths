@@ -5,7 +5,7 @@ import Notation from './Notation.js'
 const Scale = ({ activeKey, settings }) => {
   return (
     <section>
-      <h1>{activeKey.name}</h1>
+      <h2>{activeKey.name} scale</h2>
 
       <Instrument
         activeNotes={activeKey.scale}

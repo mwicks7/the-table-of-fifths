@@ -1,7 +1,7 @@
 import React from 'react'
 import GlobalVars from '../helpers/globalVars'
 
-const FifthsCol = ({ keyTonic, keyType, activeKey, onClick }) => {
+const FifthsCol = ({ keyTonic, keyType, activeKey, handleKeyChange }) => {
   const keyName = `${keyTonic} ${keyType}`
   let cssClass
 
@@ -21,7 +21,7 @@ const FifthsCol = ({ keyTonic, keyType, activeKey, onClick }) => {
       className="fifths-table__btn"
       data-key-tonic={keyTonic}
       data-key-type={keyType}
-      onClick={onClick}
+      onClick={handleKeyChange}
       >
         {keyTonic}
       </button>
@@ -29,7 +29,7 @@ const FifthsCol = ({ keyTonic, keyType, activeKey, onClick }) => {
   )
 }
 
-const FifthsRow = ({ rowKeyType, activeKey, rowKeys, onClick }) => {
+const FifthsRow = ({ rowKeyType, activeKey, rowKeys, handleKeyChange }) => {
   return (
     <tr>
       <th scope="row">{rowKeyType + ':'}</th>
@@ -38,7 +38,7 @@ const FifthsRow = ({ rowKeyType, activeKey, rowKeys, onClick }) => {
           keyTonic={keyTonic}
           keyType={rowKeyType}
           activeKey={activeKey}
-          onClick={onClick}
+          handleKeyChange={handleKeyChange}
           key={`${i}${keyTonic}${rowKeyType}`}
         />
       )}
@@ -46,7 +46,7 @@ const FifthsRow = ({ rowKeyType, activeKey, rowKeys, onClick }) => {
   )
 }
 
-const FifthsTable = ({ activeKey, onClick }) => {
+const FifthsTable = ({ activeKey, handleKeyChange }) => {
   return (
     <nav>
       <table className="fifths-table">
@@ -55,14 +55,14 @@ const FifthsTable = ({ activeKey, onClick }) => {
             rowKeyType="major"
             activeKey={activeKey}
             rowKeys={GlobalVars.keys.major}
-            onClick={onClick}
+            handleKeyChange={handleKeyChange}
           />
 
           <FifthsRow
             rowKeyType="minor"
             activeKey={activeKey}
             rowKeys={GlobalVars.keys.minor}
-            onClick={onClick}
+            handleKeyChange={handleKeyChange}
           />
         </tbody>
       </table>

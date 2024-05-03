@@ -52,15 +52,15 @@ class App extends React.Component {
 
     if (sigNotes.length > 0) {
       sigType = sigNotes[0].charAt(1) === '#' ? 'sharp' : 'flat'
-      const order = sigType === 'sharp' ? ['F', 'C', 'G', 'D', 'A', 'E'] : ['B', 'E', 'A', 'D', 'G']
-      sigNotes.sort((noteA, noteB) => order.indexOf(noteA.charAt(0)) - order.indexOf(noteB.charAt(0)))
+      const order = sigType === 'sharp' ? ['F#', 'C#', 'G#', 'D#', 'A#', 'E#'] : ['Bb', 'Eb', 'Ab', 'Db', 'Gb']
+      sigNotes.sort((noteA, noteB) => order.indexOf(noteA) - order.indexOf(noteB))
     }
 
     return { sigNotes, sigType }
   }
 
   getInstrumentNotes (activeTonic, activeType) {
-    const tonicIsFlat = activeTonic[1] === 'b'
+    const tonicIsFlat = activeTonic.charAt(1) === 'b'
     const isMajorFlat = (activeType === 'major' && ['F'].includes(activeTonic))
     const isMinorFlat = (activeType === 'minor' && ['D', 'G', 'C', 'F'].includes(activeTonic))
     const useFlat = tonicIsFlat || isMajorFlat || isMinorFlat
@@ -91,7 +91,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <main className="app">
+      <div className="app">
         <header className="app__header">
           <h1>The Table of 5ths</h1>
           <Menu
@@ -100,22 +100,24 @@ class App extends React.Component {
           />
         </header>
 
-        <FifthsTable
-          activeKey={this.state.activeKey}
-          onClick={this.handleKeyChange}
-        />
+        <main className="app_main">
+          <FifthsTable
+            activeKey={this.state.activeKey}
+            handleKeyChange={this.handleKeyChange}
+          />
 
-        <Scale
-          activeKey={this.state.activeKey}
-          settings={this.state.settings}
-        />
+          <Scale
+            activeKey={this.state.activeKey}
+            settings={this.state.settings}
+          />
 
-        <Chords
-          activeKey={this.state.activeKey}
-          chords={this.state.activeKey.chords}
-          settings={this.state.settings}
-        />
-      </main>
+          <Chords
+            activeKey={this.state.activeKey}
+            chords={this.state.activeKey.chords}
+            settings={this.state.settings}
+          />
+        </main>
+      </div>
     )
   }
 }

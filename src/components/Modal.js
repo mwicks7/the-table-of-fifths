@@ -1,7 +1,7 @@
 import React from 'react'
 import './Modal.scss'
 
-const Modal = props => {
+const Modal = (props) => {
   const modalRef = React.useRef()
 
   React.useEffect(() => {
@@ -25,9 +25,10 @@ const Modal = props => {
     <div ref={modalRef} className={`modal ${props.show ? 'is--open' : ''}`} open={props.show}>
       <div className="modal__content" role="dialog" aria-labelledby="modal__title" aria-describedby="modal__body" tabIndex={1}>
         <div className="modal__header">
-          <h2 id="modal__title" className="modal__title">{props.header}</h2>
+          <h1 id="modal__title" className="modal__title">{props.header}</h1>
           <button onClick={() => props.setShow(false)} className="modal__close" aria-label="Close modal">&times;</button>
         </div>
+
         <div className="modal__body">
           {props.children}
         </div>

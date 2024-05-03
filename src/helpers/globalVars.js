@@ -1,8 +1,34 @@
 const globalVars = {
   notesOrder: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
   notes: {
-    withSharps: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
-    withFlats: ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+    withSharps: [
+      'C',
+      'C#',
+      'D',
+      'D#',
+      'E',
+      'F',
+      'F#',
+      'G',
+      'G#',
+      'A',
+      'A#',
+      'B'
+    ],
+    withFlats: [
+      'C',
+      'Db',
+      'D',
+      'Eb',
+      'E',
+      'F',
+      'Gb',
+      'G',
+      'Ab',
+      'A',
+      'Bb',
+      'B'
+    ]
   },
   intervals: {
     major: ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'],

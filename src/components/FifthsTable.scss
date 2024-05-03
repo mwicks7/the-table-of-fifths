@@ -19,14 +19,12 @@
     background: transparent;
     border: 0;
     cursor: pointer;
-    border-radius: 3px;
 
 
     .is--current & {
       background: $color-highlight;
       min-width: 60px;
       font-size: $font-lrg;
-      border: 1px solid black;
     }
 
     .is--next &,
