@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/the-table-of-fifths/static/css/main.a2d81cde.css",
-    "main.js": "/the-table-of-fifths/static/js/main.719954db.js",
+    "main.css": "/the-table-of-fifths/static/css/main.81a57052.css",
+    "main.js": "/the-table-of-fifths/static/js/main.982f0789.js",
     "static/js/787.cc984a1c.chunk.js": "/the-table-of-fifths/static/js/787.cc984a1c.chunk.js",
     "static/media/clef_treble.svg": "/the-table-of-fifths/static/media/clef_treble.e4da224d2006ed7ec9802a1567b557c9.svg",
     "static/media/settings.svg": "/the-table-of-fifths/static/media/settings.8588567d7abe6a39f8ce830321ab1234.svg",
@@ -10,12 +10,12 @@
     "static/media/acc_flat.svg": "/the-table-of-fifths/static/media/acc_flat.67ec594185d1555170d388a783ab4d70.svg",
     "static/media/printer.svg": "/the-table-of-fifths/static/media/printer.64cd3316a4534126358711d946e9eeef.svg",
     "static/media/acc_sharp.svg": "/the-table-of-fifths/static/media/acc_sharp.b6752f7a531c9c549d07f198f6053abd.svg",
-    "main.a2d81cde.css.map": "/the-table-of-fifths/static/css/main.a2d81cde.css.map",
-    "main.719954db.js.map": "/the-table-of-fifths/static/js/main.719954db.js.map",
+    "main.81a57052.css.map": "/the-table-of-fifths/static/css/main.81a57052.css.map",
+    "main.982f0789.js.map": "/the-table-of-fifths/static/js/main.982f0789.js.map",
     "787.cc984a1c.chunk.js.map": "/the-table-of-fifths/static/js/787.cc984a1c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a2d81cde.css",
-    "static/js/main.719954db.js"
+    "static/css/main.81a57052.css",
+    "static/js/main.982f0789.js"
   ]
 }
