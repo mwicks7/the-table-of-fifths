@@ -5,7 +5,7 @@ import Notation from './Notation.js'
 const Chords = ({ activeKey, chords, settings }) => {
   return (
     <section>
-      <h2>Triads</h2>
+      <h2>{activeKey.name} triads</h2>
       {chords.map((chord, i) =>
         <Notation
           activeKey={activeKey}

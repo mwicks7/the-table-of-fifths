@@ -27,7 +27,8 @@
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(-100px);
-		
+		padding: 24px;
+
 		.is--open & {
 			opacity: 1;
 			visibility: visible;
@@ -35,25 +36,21 @@
 		}
 	}
 
-
-		.modal__header,
-		.modal__body {
-			padding: 16px 20px;
-		}
-
 		.modal__title {
 			font-size: 24px;
 			text-align: left;
-			margin: 0;
 			font-weight: bold;
 		}
-		
+
 		.modal__close {
 			position: absolute;
-			top: 16px;
-			right: 20px;
-			font-size: 30px;
+			top: 18px;
+			right: 18px;
+			display: block;
+			width: 24px;
+			height: 24px;
 			line-height: 24px;
+			font-size: 30px;
 			cursor: pointer;
 			color: #7f7f7f;
 			border: 0;

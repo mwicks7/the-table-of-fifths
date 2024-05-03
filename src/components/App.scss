@@ -1,9 +1,15 @@
 .app {
   width: 960px;
-  margin: 0 auto;
+  margin: 24px auto;
 }
 
   .app__header {
     position: relative;
+  }
+
+  .app_main {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
   }
 

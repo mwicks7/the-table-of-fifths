@@ -26,11 +26,11 @@ const Menu = ({ handleSettingsChange, settings }) => {
           />
         </Modal>
       </li>
-      <li>
+      {/* <li>
         <button height={24} width={24} className="menu__button" onClick={window.print}>
           <img src={printIcon} alt="Print"/>
         </button>
-      </li>
+      </li> */}
     </menu>
   )
 }
